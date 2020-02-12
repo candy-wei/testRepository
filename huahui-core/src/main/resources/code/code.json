@@ -1,0 +1,13 @@
+//代码生成配置，具体用法参考：http://enilu.gitee.io/web-flash/ecosystem/code-generator.html
+{
+  "codeConfig": {
+    "type": "cn.enilu.flash.code.CodeConfig",
+    "fields": {
+      entityModel: "huahui-core",
+      daoModel: "huahui-core",
+      serviceModel: "huahui-core",
+      controllerModel: "huahui-admin-api",
+      viewModel: "huahui-admin"
+    }
+  }
+}
