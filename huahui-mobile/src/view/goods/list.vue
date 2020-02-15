@@ -3,7 +3,7 @@
         <van-tabs v-model="activeNav" @click="onClickNav">
             <!--<van-tab title="推荐" name="0" >-->
             <!--</van-tab>-->
-            <van-tab v-for="nav in navList" :title="nav.name" :name="nav.id"  >
+            <van-tab v-for="nav in navList" :title="nav.name" v-bind:key="nav.id" :name="nav.id"  >
             </van-tab>
         </van-tabs>
         <van-swipe :autoplay="3000" style="height: 200px;">
