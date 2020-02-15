@@ -5,7 +5,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 const port = 8080 // dev port
-const name = 'linjiashop'
+const name = 'pos'
 module.exports = {
   outputDir: 'dist',
   publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
@@ -21,7 +21,7 @@ module.exports = {
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
 
-        target:`http://localhost:8081`,//不使用mock模拟数据直接请求flash-api服务
+        target:`http://localhost:8080/pos/`,//不使用mock模拟数据直接请求flash-api服务
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''

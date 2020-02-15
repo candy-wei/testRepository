@@ -121,7 +121,7 @@ export default {
                     item.img = baseApi+'/file/getImgStream?idFile=' + item.article.img
                 }
                 this.topicList = list
-                console.log('topicList',this.topicList)
+                // console.log('topicList',this.topicList)
             })
         },
         clickNav(index, title) {

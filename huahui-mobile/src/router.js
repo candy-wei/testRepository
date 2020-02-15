@@ -6,7 +6,7 @@ Vue.use(Router)
 const routes = [
     {
         path: '*',
-        redirect: '/index'
+        redirect: '/user'
     },
     {
         name: 'error',
@@ -171,6 +171,7 @@ routes.forEach(route => {
 const router = new Router({routes})
 
 router.beforeEach((to, from, next) => {
+    // console.log('router.js-to-from-next', to);
     const title = to.meta && to.meta.title
     if (title) {
         document.title = title;

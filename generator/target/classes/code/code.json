@@ -3,11 +3,11 @@
   "codeConfig": {
     "type": "cn.enilu.flash.code.CodeConfig",
     "fields": {
-      entityModel: "linjiashop-core",
-      daoModel: "linjiashop-core",
-      serviceModel: "linjiashop-core",
-      controllerModel: "linjiashop-admin-api",
-      viewModel: "linjiashop-admin"
+      entityModel: "huahui-core",
+      daoModel: "huahui-core",
+      serviceModel: "huahui-core",
+      controllerModel: "huahui-admin-api",
+      viewModel: "huahui-admin"
     }
   }
 }

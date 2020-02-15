@@ -37,7 +37,7 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    console.log('response',response)
+    // console.log('response',response)
     if(response.headers.token){
       //如果后台通过header返回token，说明token已经更新，则更新客户端本地token
       store.dispatch('app/toggleToken',response.headers.token)
