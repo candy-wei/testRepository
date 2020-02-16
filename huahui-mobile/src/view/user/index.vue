@@ -29,6 +29,7 @@
       <van-cell icon="points" title="直推任务" is-link @click="sorry"/>
       <van-cell icon="gold-coin-o" title="团队任务" is-link @click="sorry" />
       <van-cell icon="gift-o" title="线下任务" is-link  @click="sorry"/>
+      <van-cell icon="award-o" title="红包管理" is-link  @click="sorry"/>
       <van-cell icon="setting-o" title="设置" is-link to="setting"/>
     </van-cell-group>
     <van-tabbar v-model="activeFooter">
