@@ -11,21 +11,16 @@ import cn.enilu.flash.cache.TokenCache;
 import cn.enilu.flash.dao.system.FileInfoRepository;
 import cn.enilu.flash.security.JwtUtil;
 import cn.enilu.flash.service.BaseService;
-import cn.enilu.flash.utils.XlsUtils;
-import org.jxls.common.Context;
-import org.jxls.expression.JexlExpressionEvaluator;
-import org.jxls.transform.Transformer;
-import org.jxls.util.JxlsHelper;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -116,49 +111,7 @@ public class FileService extends BaseService<FileInfo,Long,FileInfoRepository> {
             }
         }
     }
-    /**
-     * 根据模板创建excel文件
-     * @param template excel模板
-     * @param fileName 导出的文件名称
-     * @param data  excel中填充的数据
-     * @return
-     */
-    public FileInfo createExcel(String template, String fileName, Map<String, Object> data){
-        FileOutputStream outputStream = null;
-        File file = new File(configCache.get(ConfigKeyEnum.SYSTEM_FILE_UPLOAD_PATH.getValue()) + File.separator+UUID.randomUUID().toString()+".xlsx");
-        try {
 
-            // 定义输出类型
-            outputStream =new FileOutputStream(file);
-
-            JxlsHelper jxlsHelper = JxlsHelper.getInstance();
-            String templateFile = getClass().getClassLoader().getResource(template).getPath();
-            InputStream is = new BufferedInputStream(new FileInputStream(templateFile));
-
-            Transformer transformer = jxlsHelper.createTransformer(is, outputStream);
-            Context context = new Context();
-            for (Map.Entry<String, Object> entry : data.entrySet()) {
-                context.putVar(entry.getKey(), entry.getValue());
-            }
-
-            JexlExpressionEvaluator evaluator = (JexlExpressionEvaluator) transformer.getTransformationConfig().getExpressionEvaluator();
-            Map<String, Object> funcs = new HashMap<String, Object>(4);
-            funcs.put("utils", new XlsUtils());
-            evaluator.getJexlEngine().setFunctions(funcs);
-            jxlsHelper.processTemplate(context, transformer);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                outputStream.flush();
-                outputStream.close();
-            } catch (Exception e) {
-            e.printStackTrace();
-            }
-
-        }
-        return save(fileName,file);
-    }
     /**
      * 创建文件
      * @param originalFileName

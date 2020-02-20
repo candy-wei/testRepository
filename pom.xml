@@ -22,6 +22,7 @@
         <log4j.version>1.2.17</log4j.version>
         <!-- Test libs -->
         <junit.version>4.12</junit.version>
+        <nutz-version>1.r.60</nutz-version>
         <!--build libs-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java_source_version>1.8</java_source_version>
@@ -61,12 +62,6 @@
                 <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter-logging</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -79,24 +74,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
                 <version>${spring.boot.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-slf4j-impl</artifactId>
-                <version>${log4j2.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-core</artifactId>
-                <version>${log4j2.version}</version>
             </dependency>
 
             <dependency>
@@ -221,11 +198,6 @@
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
-            <dependency>
-                <groupId>javax.mail</groupId>
-                <artifactId>mail</artifactId>
-                <version>${mail.version}</version>
-            </dependency>
             <!-- Http Lib -->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
@@ -325,6 +297,12 @@
                 <version>1.0.6</version>
             </dependency>
             <!-- message end-->
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-log4j2</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>

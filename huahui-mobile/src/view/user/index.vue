@@ -1,6 +1,9 @@
 <template>
   <div>
     <img class="user-poster" src="@/assets/img/banner.jpg" >
+    <van-cell-group class="user-group">
+      <van-cell icon="bill-o" title="红包管理" is-link  @click="sorry"/>
+    </van-cell-group>
     <van-row class="user-links">
       <van-col span="6">
         <van-icon name="pending-payment" @click="toOrder(1)"/>
@@ -25,13 +28,9 @@
     </van-cell-group>
 
     <van-cell-group class="user-group">
-      <van-cell icon="todo-list-o" title="直推任务" is-link @click="sorry"/>
-      <van-cell icon="todo-list-o" title="团队任务" is-link @click="sorry" />
-      <van-cell icon="todo-list-o" title="线下任务" is-link  @click="sorry"/>
-    </van-cell-group>
-
-    <van-cell-group class="user-group">
-      <van-cell icon="bill-o" title="红包管理" is-link  @click="sorry"/>
+      <van-cell icon="todo-list-o" title="今日任务" is-link @click="sorry"/>
+      <!-- <van-cell icon="todo-list-o" title="团队任务" is-link @click="sorry" />
+      <van-cell icon="todo-list-o" title="线下任务" is-link  @click="sorry"/> -->
     </van-cell-group>
 
     <van-cell-group>
