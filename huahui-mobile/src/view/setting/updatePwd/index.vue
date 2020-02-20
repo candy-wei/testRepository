@@ -3,6 +3,7 @@
         <van-nav-bar
                 title="修改密码"
                 left-arrow
+                left-text="返回"
                 @click-left="onClickLeft"
         />
 

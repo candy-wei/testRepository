@@ -1,26 +1,26 @@
-import categoryApi from '@/api/category'
-import goodsApi from '@/api/goods'
-import topicApi from '@/api/topic'
+import category from '@/api/category'
+import goods from '@/api/goods'
 import store from '@/store'
-const baseApi = process.env.VUE_APP_BASE_API
 import {
     Card,
     Cell,
     CellGroup,
     Col,
+    Divider,
     Icon,
     Lazyload,
+    List,
     Row,
+    Swipe,
+    SwipeItem,
     Tab,
     Tabbar,
     TabbarItem,
     Tabs,
-    Toast,
-    Divider,
-    Panel,
-    Image,
-    List
+    Toast
 } from 'vant';
+
+const baseApi = process.env.VUE_APP_BASE_API
 
 export default {
     components: {
@@ -31,14 +31,14 @@ export default {
         [CellGroup.name]: CellGroup,
         [Tabbar.name]: Tabbar,
         [TabbarItem.name]: TabbarItem,
+        [Swipe.name]: Swipe,
+        [SwipeItem.name]: SwipeItem,
         [Tab.name]: Tab,
         [Tabs.name]: Tabs,
         [Card.name]: Card,
         [Toast.name]: Toast,
         [Divider.name]: Divider,
         [List.name]: List,
-        [Panel.name]: Panel,
-        [Image.name]: Image,
         Lazyload
 
 
@@ -49,19 +49,17 @@ export default {
             finished: false,
             navList: [],
             banners: [],
-            hotList: [],
-            newList: [],
+            goodsList: [],
             activeFooter: 0,
-            activeNav: 0,
-            total:0,
+            activeNav: '1',
+            total: 0,
             listQuery: {
                 page: 1,
                 limit: 50,
                 idCategory: undefined
             },
             count: 0,
-            isLoading: false,
-            topicList: []
+            isLoading: false
         }
     },
     mounted() {
@@ -69,79 +67,87 @@ export default {
     },
     methods: {
         init() {
+            // this.activeNav = this.$route.query.itemId
             let categoryData = store.state.app.category
             if (!categoryData || categoryData.length == 0) {
                 let platform = navigator.platform
                 store.dispatch('app/toggleDevice', platform)
-                categoryApi.getAllCategories().then(response => {
+                category.getAllCategories().then(response => {
                     let navList = response.data
-                    navList.splice(0,0,{name:'推荐',id:'0'})
                     this.navList = navList
                     store.dispatch('app/toggleCategory', navList)
-
+                    this.getBanners(this.activeNav)
                 }).catch((err) => {
+                    console.log('err', err)
                     Toast.fail(err);
                 })
             } else {
                 this.navList = categoryData
+                this.getBanners(this.activeNav)
             }
-            this.queryGoods()
-            this.queryTopic()
-
+            this.getGoods(this.activeNav)
         },
-        queryGoods() {
-            goodsApi.searchHot().then(response => {
-                let list = response.data
-                for (const index in  list) {
-                    const item = list[index]
-                    item.img = baseApi+'/file/getImgStream?idFile=' + item.pic
+        getBanners(categoryIndex) {
+            let bannerList = null
+            for (const i in this.navList) {
+                if (this.navList[i].id === categoryIndex) {
+                    bannerList = this.navList[i].bannerList
                 }
-                this.hotList = list
+            }
+
+            let imgList = new Array()
+            for (let i = 0; i < bannerList.length; i++) {
+                let url = ''
+                let page = bannerList[i].page
+                if (page != '') {
+                    if (page.indexOf('http') === 0) {
+                        url = page
+                    } else {
+                        url = '#/' + bannerList[i].page
+                    }
+                }
+                if (bannerList[i].param != '') {
+                    const param = JSON.parse(bannerList[i].param)
+                    for (const key in param) {
+                        url += '/' + param[key]
+                    }
+                }
+                imgList.push({
+                    url: url,
+                    path: baseApi + '/file/getImgStream?idFile=' + bannerList[i].idFile
+                })
+            }
+            this.banners = imgList
+        },
+        getGoods(idCategory) {
+            this.listQuery['idCategory'] = idCategory
+            goods.queryGoods(this.listQuery).then(response => {
+                let list = response.data.records
+                this.total = response.data.total
+                for (var index in  list) {
+                    const item = list[index]
+                    item.img = baseApi + '/file/getImgStream?idFile=' + item.pic
+                }
+                this.goodsList = list
 
             }).catch((err) => {
                 Toast(err)
             })
-            goodsApi.searchNew().then(response => {
-                let list = response.data
-                for (const index in  list) {
-                    const item = list[index]
-                    item.img = baseApi+'/file/getImgStream?idFile=' + item.pic
-                }
-                this.newList = list
-
-            }).catch((err) => {
-                Toast(err)
-            })
         },
-        queryTopic(){
-            topicApi.queryAll().then(response => {
-                let list = response.data
-                for (const index in  list) {
-                    const item = list[index]
-                    item.img = baseApi+'/file/getImgStream?idFile=' + item.article.img
-                }
-                this.topicList = list
-                // console.log('topicList',this.topicList)
-            })
-        },
-        clickNav(index, title) {
-            this.activeNav = index;
-            this.$router.push({path: '/list?itemId='+index})
-
+        loadMore() {
+            this.loading = false
+            this.finished = true
         },
         clickSwipe(index, p2) {
             console.log(index)
             console.log(p2)
         },
         viewGoodsDetail(id) {
-            this.$router.push({path: '/goods/'+id})
+
+            this.$router.push({path: '/goods/' + id})
         },
         formatPrice(price) {
             return (price / 100).toFixed(2)
-        },
-        toTopic(id) {
-            this.$router.push({path: '/topic/'+id})
-          // Toast('敬请期待')
         }
 
     }

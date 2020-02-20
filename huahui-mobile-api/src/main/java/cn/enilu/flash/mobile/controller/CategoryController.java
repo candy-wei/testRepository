@@ -30,8 +30,11 @@ public class CategoryController extends BaseController {
     private CategoryService categoryService;
     @Autowired
     private CategoryBannerRelService categoryBannerRelService;
+    private Logger log = LoggerFactory.getLogger(getClass());
+
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Object list() {
+        log.info("CategoryController.list: {}", "日志日志日志日志日志日志日志日志日志");
         List<Category> list = categoryService.queryAll();
         list.forEach(item->{
             List<CategoryBannerRel> relList = categoryBannerRelService.queryAll(SearchFilter.build("idCategory",item.getId()));

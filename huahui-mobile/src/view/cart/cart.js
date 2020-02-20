@@ -19,7 +19,8 @@ export default {
     data() {
         return {
             isLogin:false,
-            activeFooter: 2,
+            // isLogin:true,
+            activeFooter: 1,
             checkedGoods: [],
             checkeAllCarts:[],
             cartList: [],

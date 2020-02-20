@@ -3,6 +3,7 @@
         <van-nav-bar
                 title="修改姓名"
                 left-arrow
+                left-text="返回"
                 @click-left="onClickLeft"
         />
 
