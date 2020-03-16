@@ -42,7 +42,7 @@ const routes = [
         name: 'user',
         component: () => import('./view/user'),
         meta: {
-            requireAuth: true,
+            // requireAuth: true,
             title: '会员中心'
         }
     },
