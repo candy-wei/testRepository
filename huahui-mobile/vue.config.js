@@ -4,7 +4,7 @@ const path = require('path')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
-const port = 8080 // dev port
+const port = 8081 // dev port
 const name = 'pos'
 module.exports = {
   outputDir: 'dist',
@@ -21,7 +21,7 @@ module.exports = {
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
 
-        target:`http://localhost:8080/pos/`,//不使用mock模拟数据直接请求flash-api服务
+        target:`http://localhost:8081/pos/`,//不使用mock模拟数据直接请求flash-api服务
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''
