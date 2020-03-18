@@ -1,0 +1,17 @@
+**/node_modules
+package-lock.json
+**/dist
+*.iml
+.idea
+target
+logs
+out
+.idea/
+*dev.*
+*devServer.*
+*.bat
+TestController.java
+*Test.java
+jdbc.properties
+**/target
+
