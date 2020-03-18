@@ -3,6 +3,7 @@
         <van-nav-bar
                 title="设置"
                 left-arrow
+                left-text="返回"
                 @click-left="onClickLeft"
         />
         <van-cell-group>

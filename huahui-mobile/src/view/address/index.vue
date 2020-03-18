@@ -3,6 +3,7 @@
         <van-nav-bar
                 title="收货地址"
                 left-arrow
+                left-text="返回"
                 @click-left="onClickLeft"
         />
         <van-address-list

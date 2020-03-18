@@ -3,6 +3,7 @@
         <van-nav-bar
                 title="更换手机"
                 left-arrow
+                left-text="返回"
                 @click-left="onClickLeft"
         />
         <van-row>

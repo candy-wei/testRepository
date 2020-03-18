@@ -1,5 +1,5 @@
 import userApi from '@/api/user'
-import {Cell, CellGroup, Col, Icon, Row, Tabbar, TabbarItem, Toast} from 'vant';
+import {Cell, CellGroup, Col, Icon, Row, Tabbar, TabbarItem, Toast, Image} from 'vant';
 
 export default {
     components: {
@@ -10,11 +10,12 @@ export default {
         [CellGroup.name]: CellGroup,
         [Tabbar.name]: Tabbar,
         [TabbarItem.name]: TabbarItem,
-        [Toast.name]: Toast
+        [Toast.name]: Toast,
+        [Image.name]: Image
     },
     data() {
         return {
-            activeFooter: 3
+            activeFooter: 2
         }
     },
     mounted() {

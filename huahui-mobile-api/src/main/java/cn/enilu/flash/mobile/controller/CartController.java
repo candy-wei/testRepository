@@ -28,6 +28,7 @@ public class CartController extends BaseController {
     private GoodsSkuService goodsSkuService;
     @Autowired
     private GoodsService goodsService;
+
     @RequestMapping(value = "/queryByUser",method = RequestMethod.GET)
     public Object getByUser(){
         Long idUser = getIdUser(HttpUtil.getRequest());

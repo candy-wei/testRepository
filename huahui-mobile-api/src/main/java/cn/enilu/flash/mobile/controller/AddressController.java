@@ -4,10 +4,10 @@ import cn.enilu.flash.bean.entity.shop.Address;
 import cn.enilu.flash.bean.vo.front.Rets;
 import cn.enilu.flash.bean.vo.query.SearchFilter;
 import cn.enilu.flash.service.shop.AddressService;
-import cn.enilu.flash.utils.HttpUtil;
 import cn.enilu.flash.utils.Lists;
-import cn.enilu.flash.utils.StringUtil;
 import cn.enilu.flash.web.controller.BaseController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +23,8 @@ import java.util.List;
 public class AddressController extends BaseController {
     @Autowired
     private AddressService addressService;
+    private Logger log = LoggerFactory.getLogger(getClass());
+
     @RequestMapping(value = "{id}",method = RequestMethod.GET)
     public Object get(@PathVariable("id") Long id){
         Long idUser = getIdUser();

@@ -31,21 +31,6 @@ const routes = [
         }
     },
     {
-        path: '/topic/:id',
-        name: 'topic',
-        component: () => import('./view/topic'),
-        meta: {
-            title: '专题推荐'
-        }
-    },
-    {
-        name: 'list',
-        component: () => import('./view/goods/list'),
-        meta: {
-            title: '邻家小铺'
-        }
-    },
-    {
         path: '/goods/:id',
         name: 'goods',
         component: () => import('./view/goods'),
@@ -54,17 +39,10 @@ const routes = [
         }
     },
     {
-        name: 'search',
-        component: () => import('./view/search'),
-        meta: {
-            title: '发现'
-        }
-    },
-    {
         name: 'user',
         component: () => import('./view/user'),
         meta: {
-            requireAuth: true,
+            // requireAuth: true,
             title: '会员中心'
         }
     },
@@ -189,6 +167,7 @@ router.beforeEach((to, from, next) => {
     } else {
         next()
     }
+    // next()
 })
 
 
