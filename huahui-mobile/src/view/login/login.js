@@ -1,8 +1,10 @@
 import loginApi from '@/api/login'
 import store from '@/store'
-import { Row, Col, Icon, Cell, CellGroup,Field,Button,Toast,
+import {
+    Row, Col, Icon, Cell, CellGroup, Field, Button, Toast,
     Tabbar,
-    TabbarItem,Dialog} from 'vant';
+    TabbarItem, Dialog
+} from 'vant';
 
 export default {
     components: {
@@ -20,84 +22,84 @@ export default {
     },
     data() {
         return {
-            mobile:'',
-            smsCode:'',
-            password:'',
-            activeFooter:3,
-            show1:false,
-            show2:true,
-            redirect:'',
+            mobile: '15011112222',
+            smsCode: '',
+            password: 'admin',
+            activeFooter: 3,
+            show1: false,
+            show2: true,
+            redirect: '',
             hasSendSms: false,
             second: 60
         }
     },
-    mounted(){
-      this.init()
+    mounted() {
+        this.init()
     },
-    methods:{
-        init(){
-            if(store.state.app.user.nickName){
-                this.$router.push({path: '/index'})
+    methods: {
+        init() {
+            if (store.state.app.user.nickName) {
+                this.$router.push({ path: '/index' })
                 return
             }
-            if(this.$route.query.redirect){
+            if (this.$route.query.redirect) {
                 this.redirect = this.$route.query.redirect
-                console.log('redirect',this.redirect)
+                console.log('redirect', this.redirect)
             }
         },
-        toLoginByPassword(){
+        toLoginByPassword() {
             this.show1 = false;
             this.show2 = true;
         },
-        toRegister(){
+        toRegister() {
             this.show2 = false;
             this.show1 = true;
         },
-        loginOrRegister(){
-            loginApi.loginOrReg(this.mobile,this.smsCode).then( response=> {
-                store.dispatch('app/toggleToken',response.data.token)
-                store.dispatch('app/toggleUser',response.data.user)
-                if(response.data.initPassword){
-                    Toast({duration:8000,message:'欢迎新用户，请谨慎保管您的初始密码：'+response.data.initPassword})
+        loginOrRegister() {
+            loginApi.loginOrReg(this.mobile, this.smsCode).then(response => {
+                store.dispatch('app/toggleToken', response.data.token)
+                store.dispatch('app/toggleUser', response.data.user)
+                if (response.data.initPassword) {
+                    Toast({ duration: 8000, message: '欢迎新用户，请谨慎保管您的初始密码：' + response.data.initPassword })
                 }
-                if(this.redirect){
-                    this.$router.push({path: this.redirect})
-                }else {
-                    this.$router.push({path: '/index'})
+                if (this.redirect) {
+                    this.$router.push({ path: this.redirect })
+                } else {
+                    this.$router.push({ path: '/index' })
                 }
-            }).then( (err) => {
+            }).then((err) => {
                 // Toast.fail(err)
             })
         },
-        loginByPass(){
-            loginApi.loginByPassword(this.mobile,this.password).then( response=> {
-                store.dispatch('app/toggleToken',response.data.token)
-                store.dispatch('app/toggleUser',response.data.user)
-                if(this.redirect){
-                   this.$router.push({path: this.redirect})
-                }else {
-                   this.$router.push({path: '/index'})
+        loginByPass() {
+            loginApi.loginByPassword(this.mobile, this.password).then(response => {
+                store.dispatch('app/toggleToken', response.data.token)
+                store.dispatch('app/toggleUser', response.data.user)
+                if (this.redirect) {
+                    this.$router.push({ path: this.redirect })
+                } else {
+                    this.$router.push({ path: '/index' })
                 }
-            }).catch( err=>{
+            }).catch(err => {
                 Toast(err)
             })
         },
-        sendSms(){
+        sendSms() {
             this.hasSendSms = true
-            loginApi.sendSmsCode(this.mobile).then( response => {
+            loginApi.sendSmsCode(this.mobile).then(response => {
                 this.setTimeOut()
                 const smsCode = response.data
-                Toast('提示：测试阶段不发送短信验证码：'+smsCode)
+                Toast('提示：测试阶段不发送短信验证码：' + smsCode)
             })
         },
-        setTimeOut () {
+        setTimeOut() {
             let timer = setTimeout(() => {
                 this.setTimeOut()
-                if(this.second > 0) {
+                if (this.second > 0) {
                     this.second--
                 }
             }, 1000)
-            if(this.second <= 0) {
+            if (this.second <= 0) {
                 this.hasSendSms = false
                 this.second = 60
                 clearTimeout(timer)
