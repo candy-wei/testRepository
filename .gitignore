@@ -1,3 +1,6 @@
+**/node_modules
+package-lock.json
+**/dist
 *.iml
 .idea
 target
@@ -9,6 +12,6 @@ out
 *.bat
 TestController.java
 *Test.java
-**/node_modules
-package-lock.json
 .patch
+jdbc.properties
+**/target
