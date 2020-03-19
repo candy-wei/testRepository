@@ -55,7 +55,7 @@
         <span class="redpack-label">可领红包{{12}}个</span>
       </van-grid-item>
 
-      <van-grid-item>
+      <van-grid-item to="/taskList">
         <img src="@/assets/img/task5.png" class="redpack-img" />
         <span class="redpack-label">今日任务</span>
       </van-grid-item>

@@ -139,6 +139,14 @@ const routes = [
             // requireAuth: true,
             title: '购物车'
         }
+    },
+    {
+        name: 'taskList',
+        component: () => import('./view/task'),
+        meta: {
+            // requireAuth: true,
+            title: '任务列表'
+        }
     }
 ]
 
@@ -146,7 +154,7 @@ routes.forEach(route => {
     route.path = route.path || '/' + (route.name || '');
 })
 
-const router = new Router({routes})
+const router = new Router({ routes })
 
 router.beforeEach((to, from, next) => {
     // console.log('router.js-to-from-next', to);
@@ -156,12 +164,12 @@ router.beforeEach((to, from, next) => {
     }
     // 判断该路由是否需要登录权限
     if (to.meta.requireAuth) {
-        if(store.state.app.token){
+        if (store.state.app.token) {
             next();
         } else {
             next({
                 path: '/login',
-                query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+                query: { redirect: to.fullPath }  // 将跳转的路由path作为参数，登录成功后跳转到该路由
             })
         }
     } else {
