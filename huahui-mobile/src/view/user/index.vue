@@ -1,24 +1,24 @@
 <template>
   <div class="member">
     <div class="header">
-      <!-- <div class="van-cell--clickable">
-        <i class="van-icon van-icon-setting-o">
-        </i>
-        <span>设置</span>
-      </div>-->
-      <van-row class="header-row" type="flex" justify="center">
-        <!-- 用户头像 -->
-        <van-image
-          class="avartar"
-          round
-          width="70px"
-          height="70px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <div class="username">
+      <van-row class="header-row" type="flex" justify="center" align="center" span="8">
+        <van-col span="12" class="header-row-left">
+          <van-image
+            class="avartar"
+            round
+            width="50px"
+            height="50px"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+          />
           <span>September</span>
-          <span>普通会员</span>
-        </div>
+        </van-col>
+        <van-col span="16" class="header-row-right">
+          <van-row>
+            <img src="@/assets/img/level1.png" width="32px" height="32px" alt />
+            <span style="margin-left:10px;margin-bottom: 10px;">{{'普通会员'}}</span>
+          </van-row>
+          <div class="integral">累计积分: {{100}} 分</div>
+        </van-col>
       </van-row>
     </div>
 
@@ -115,24 +115,27 @@
   }
 }
 
-.username {
-  margin: 10px;
-  position: absolute;
-  top: 80px;
-}
-
-.avartar {
-  margin: 20px;
-}
-
 .header-row {
   height: 125px;
   background: repeating-linear-gradient(
     130deg,
-    #c52b2bd1 30px,
-    #e01673a3 100px
+    #f1151573 30px,
+    #e21e1e69 100px
   );
   color: #ffffff;
+  .header-row-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .header-row-right {
+    padding-left: 40px;
+    .integral {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  }
 }
 
 .task-row {
