@@ -4,7 +4,7 @@ const path = require('path')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
-const port = 8080 // dev port
+const port = process.env.PORT || 8080 // dev port
 const name = 'pos'
 module.exports = {
   outputDir: 'dist',
@@ -27,7 +27,8 @@ module.exports = {
           ['^' + process.env.VUE_APP_BASE_API]: ''
         }
       }
-    }
+    },
+    disableHostCheck: true // 内网穿透
     // after: require('./mock/mock-server.js')
   },
   configureWebpack: {
