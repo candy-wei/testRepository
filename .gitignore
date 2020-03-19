@@ -12,6 +12,7 @@ out
 *.bat
 TestController.java
 *Test.java
+.patch
 jdbc.properties
 **/target
 .env.development
