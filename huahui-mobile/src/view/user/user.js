@@ -1,5 +1,5 @@
 import userApi from '@/api/user'
-import {Cell, CellGroup, Col, Icon, Row, Tabbar, TabbarItem, Toast, Image} from 'vant';
+import { Cell, CellGroup, Col, Icon, Row, Tabbar, TabbarItem, Toast, Image, Grid, GridItem } from 'vant';
 
 export default {
     components: {
@@ -11,7 +11,9 @@ export default {
         [Tabbar.name]: Tabbar,
         [TabbarItem.name]: TabbarItem,
         [Toast.name]: Toast,
-        [Image.name]: Image
+        [Image.name]: Image,
+        [Grid.name]: Grid,
+        [GridItem.name]: GridItem,
     },
     data() {
         return {
@@ -26,14 +28,14 @@ export default {
             userApi.getUserInfo().then(response => {
 
             }).catch((err) => {
-                this.$router.replace({path:'login',query:{redirect:'user'}})
+                this.$router.replace({ path: 'login', query: { redirect: 'user' } })
             })
         },
-        sorry(){
-          Toast('敬请期待')
+        sorry() {
+            Toast('敬请期待')
         },
-        toOrder(status){
-            this.$router.push({path:'order',query:{status:status}})
+        toOrder(status) {
+            this.$router.push({ path: 'order', query: { status: status } })
         }
     }
 }
