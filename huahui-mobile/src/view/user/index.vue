@@ -54,7 +54,7 @@
         <span class="redpack-label">我的钱包</span>
       </van-grid-item>
 
-      <van-grid-item>
+      <van-grid-item @click="onTapTodayRedPack">
         <img src="@/assets/img/redpack5.png" class="redpack-img tada" />
         <span class="redpack-label">每日可领红包12/1个</span>
       </van-grid-item>
@@ -71,6 +71,27 @@
       <van-cell icon="setting-o" title="设置" is-link to="setting" />
       <van-cell icon="info-o" title="规则说明" is-link to="sorry" />
     </van-cell-group>
+
+    <!-- 领取红包图片 -->
+    <van-popup
+      v-model="showReceiveRedPackImg"
+      :style="{ width: '100%', 'background-color': 'transparent' }"
+    >
+      <img src="@/assets/img/receiver_red_pack.png" width="100%" @click="onTapRedPackImg" />
+    </van-popup>
+
+    <!-- 红包金额 -->
+    <van-popup
+      v-model="showRedPackMoney"
+      :style="{ width: '100%', 'background-color': 'transparent' }"
+      class="redpack-money"
+    >
+      <img src="@/assets/img/receiver_red_pack.png" width="100%" @click="opTapRedPackMoney" />
+      <div class="redpack-word">
+        <div class="redpack-title">恭喜你!</div>
+        <div>抽中0.5元红包</div>
+      </div>
+    </van-popup>
 
     <van-tabbar v-model="activeFooter">
       <van-tabbar-item icon="home-o" replace to="/index">首页</van-tabbar-item>
@@ -222,5 +243,43 @@
 }
 .tada {
   animation: tada 1.5s infinite;
+}
+
+@keyframes showMoney {
+  0% {
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+  }
+
+  45% {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+  }
+
+  80% {
+    transform: scale(0.95);
+    -webkit-tranform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
+.showMoney {
+  animation: tada 0.5s;
+}
+.redpack-money {
+  .redpack-word {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 35%;
+    color: #fff;
+    text-align: center;
+    .redpack-title {
+      font-size: 24px;
+    }
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 import userApi from '@/api/user'
-import { Cell, CellGroup, Col, Icon, Row, Tabbar, TabbarItem, Toast, Image, Grid, GridItem, Dialog } from 'vant';
+import { Cell, CellGroup, Col, Icon, Row, Tabbar, TabbarItem, Toast, Image, Grid, GridItem, Dialog, Popup } from 'vant';
 
 export default {
     components: {
@@ -15,10 +15,13 @@ export default {
         [Grid.name]: Grid,
         [GridItem.name]: GridItem,
         [Dialog.Component.name]: Dialog,
+        [Popup.name]: Popup,
     },
     data() {
         return {
-            activeFooter: 2
+            activeFooter: 2,
+            showReceiveRedPackImg: false,
+            showRedPackMoney: false,
         }
     },
     mounted() {
@@ -43,6 +46,24 @@ export default {
             this.$dialog.alert({
                 message: "规则内容规则内容规则内容规则内容规则内容规则内容规则内容规则内容"
             })
+        },
+
+        onTapTodayRedPack() {
+            let redPackNum = 12;
+            if (redPackNum > 0) {
+                this.showReceiveRedPackImg = true
+            }
+        },
+
+        onTapRedPackImg() {
+            this.showReceiveRedPackImg = false
+            this.showRedPackMoney = true
+        },
+        opTapRedPackMoney() {
+            this.showRedPackMoney = false
+        },
+        open() {
+            console.log('open')
         }
     }
 }
