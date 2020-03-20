@@ -42,17 +42,17 @@
     <van-grid :column-num="2" class="redpack-group">
       <van-grid-item info="99+" to="/index">
         <img src="@/assets/img/redpack4.png" class="redpack-img" />
-        <span class="redpack-label">已领红包{{10}}个</span>
+        <span class="redpack-label">红包总数{{10}}个</span>
       </van-grid-item>
 
       <van-grid-item>
         <img src="@/assets/img/wallet.png" class="redpack-img" />
-        <span class="redpack-label">累计收入{{10}}元</span>
+        <span class="redpack-label">我的钱包</span>
       </van-grid-item>
 
       <van-grid-item>
         <img src="@/assets/img/redpack5.png" class="redpack-img tada" />
-        <span class="redpack-label">可领红包{{12}}个</span>
+        <span class="redpack-label">每日可领红包12/1个</span>
       </van-grid-item>
 
       <van-grid-item to="/taskList">
