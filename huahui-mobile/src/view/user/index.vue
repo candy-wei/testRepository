@@ -14,7 +14,7 @@
         </van-col>
         <van-col span="16" class="header-row-right">
           <van-row>
-            <img src="@/assets/img/level1.png" width="32px" height="32px" alt />
+            <img :src="require('@/assets/img/level'+ 3 +'.png')" width="26px" height="26px" alt />
             <span style="margin-left:10px;margin-bottom: 10px;">{{'普通会员'}}</span>
           </van-row>
           <div class="integral">累计积分: {{100}} 分</div>
