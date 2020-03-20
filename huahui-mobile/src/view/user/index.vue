@@ -20,6 +20,10 @@
           <div class="integral">累计积分: {{100}} 分</div>
         </van-col>
       </van-row>
+
+      <div class="rule" @click="onTapRule">
+        <van-icon name="question-o" />&nbsp;活动规则
+      </div>
     </div>
 
     <van-cell-group class="order-group">
@@ -115,6 +119,9 @@
   }
 }
 
+.header {
+  position: relative;
+}
 .header-row {
   height: 125px;
   background: repeating-linear-gradient(
@@ -138,6 +145,12 @@
   }
 }
 
+.rule {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #eee;
+}
 .task-row {
   background: #ffffff;
 }

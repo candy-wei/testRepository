@@ -1,5 +1,5 @@
 import userApi from '@/api/user'
-import { Cell, CellGroup, Col, Icon, Row, Tabbar, TabbarItem, Toast, Image, Grid, GridItem } from 'vant';
+import { Cell, CellGroup, Col, Icon, Row, Tabbar, TabbarItem, Toast, Image, Grid, GridItem, Dialog } from 'vant';
 
 export default {
     components: {
@@ -14,6 +14,7 @@ export default {
         [Image.name]: Image,
         [Grid.name]: Grid,
         [GridItem.name]: GridItem,
+        [Dialog.Component.name]: Dialog,
     },
     data() {
         return {
@@ -36,6 +37,12 @@ export default {
         },
         toOrder(status) {
             this.$router.push({ path: 'order', query: { status: status } })
+        },
+
+        onTapRule() {
+            this.$dialog.alert({
+                message: "规则内容规则内容规则内容规则内容规则内容规则内容规则内容规则内容"
+            })
         }
     }
 }
