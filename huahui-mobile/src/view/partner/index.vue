@@ -99,11 +99,12 @@
 // 海报
 .poster-box {
   position: relative;
+  overflow: hidden;
 }
 .qr_code {
   position: absolute;
-  left: 150px;
-  top: 233px;
+  left: 160px;
+  top: 530px;
   width: 65px;
   height: 65px;
 }
@@ -117,6 +118,8 @@
   width: 80%;
   position: absolute;
   left: 10%;
-  top: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 4px 2px 8px 2px #715f5f;
 }
 </style>
