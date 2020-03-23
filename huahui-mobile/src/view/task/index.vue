@@ -1,7 +1,5 @@
 <template >
   <div id="TaskList">
-    <van-nav-bar title="今日任务" left-arrow left-text="返回" @click-left="onClickLeft" />
-
     <template v-for="task in [1, 2, 4]">
       <van-panel title="初级任务" icon="label" :key="task" :status="'任务到期2020:10:10'" class="task-box">
         <van-row class="task-content">
