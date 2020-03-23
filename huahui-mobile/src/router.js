@@ -147,6 +147,14 @@ const routes = [
             // requireAuth: true,
             title: '任务列表'
         }
+    },
+    {
+        name: 'partner',
+        component: () => import('./view/partner'),
+        meta: {
+            // requireAuth: true,
+            title: '合作伙伴'
+        }
     }
 ]
 

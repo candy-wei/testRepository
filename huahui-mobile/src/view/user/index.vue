@@ -68,8 +68,8 @@
     <van-cell-group>
       <van-cell icon="records" title="全部订单" is-link to="order" />
       <van-cell icon="location-o" title="收货地址" is-link to="address" />
+      <van-cell icon="friends-o" title="合作伙伴" is-link to="partner" />
       <van-cell icon="setting-o" title="设置" is-link to="setting" />
-      <van-cell icon="info-o" title="规则说明" is-link to="sorry" />
     </van-cell-group>
 
     <!-- 领取红包图片 -->
