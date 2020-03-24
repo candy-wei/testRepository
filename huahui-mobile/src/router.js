@@ -155,6 +155,14 @@ const routes = [
             // requireAuth: true,
             title: '合作伙伴'
         }
+    },
+    {
+        name: 'wallet',
+        component: () => import('./view/wallet'),
+        meta: {
+            // requireAuth: true,
+            title: '我的钱包'
+        }
     }
 ]
 

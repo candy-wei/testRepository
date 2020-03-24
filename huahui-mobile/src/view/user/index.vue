@@ -49,7 +49,7 @@
         <span class="redpack-label">红包总数{{10}}个</span>
       </van-grid-item>
 
-      <van-grid-item>
+      <van-grid-item to="/wallet">
         <img src="@/assets/img/wallet.png" class="redpack-img" />
         <span class="redpack-label">我的钱包</span>
       </van-grid-item>
