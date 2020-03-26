@@ -45,13 +45,11 @@ export default {
     },
     data() {
         return {
-            loading: false,
-            finished: false,
             navList: [],
             banners: [],
             goodsList: [],
             activeFooter: 0,
-            activeNav: '1',
+            activeNav: 1,
             total: 0,
             listQuery: {
                 page: 1,
@@ -59,7 +57,6 @@ export default {
                 idCategory: undefined
             },
             count: 0,
-            isLoading: false
         }
     },
     mounted() {
@@ -122,9 +119,9 @@ export default {
         getGoods(idCategory) {
             this.listQuery['idCategory'] = idCategory
             goods.queryGoods(this.listQuery).then(response => {
-                let list = response.data.records
+                let list = response.data.list
                 this.total = response.data.total
-                for (var index in  list) {
+                for (var index in list) {
                     const item = list[index]
                     item.img = baseApi + '/file/getImgStream?idFile=' + item.pic
                 }
@@ -134,17 +131,13 @@ export default {
                 Toast(err)
             })
         },
-        loadMore() {
-            this.loading = false
-            this.finished = true
-        },
         clickSwipe(index, p2) {
             console.log(index)
             console.log(p2)
         },
         viewGoodsDetail(id) {
 
-            this.$router.push({path: '/goods/' + id})
+            this.$router.push({ path: '/goods/' + id })
         },
         formatPrice(price) {
             return (price / 100).toFixed(2)

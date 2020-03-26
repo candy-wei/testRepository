@@ -9,7 +9,7 @@
         </a>
       </van-swipe-item>
     </van-swipe>
-    <van-list v-model="loading" :finished="finished" @load="loadMore"></van-list>
+
     <van-card
       v-for="(goods,index) in goodsList"
       :key="index"
