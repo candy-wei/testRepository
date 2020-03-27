@@ -3,26 +3,26 @@ import request from '@/utils/request'
 export default {
     count: function () {
         return request({
-            url: '/user/cart/count',
+            url: '/shop/cart/count',
             method: 'get'
         })
     },
     queryByUser: function () {
         return request({
-            url: '/user/cart/queryByUser',
+            url: '/shop/cart/queryByUser',
             method: 'get'
         })
     },
     add: function (params) {
         return request({
-            url: '/user/cart/add',
+            url: '/shop/cart/add',
             method: 'POST',
-            data:params
+            data: params
         })
     },
-    update:function(id,count){
+    update: function (id, count) {
         return request({
-            url: '/user/cart/update/'+id+'/'+count,
+            url: '/shop/cart/update/' + id + '/' + count,
             method: 'POST',
         })
     }

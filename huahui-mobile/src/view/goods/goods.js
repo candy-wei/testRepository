@@ -38,15 +38,15 @@ export default {
         [Tabbar.name]: Tabbar,
         [TabbarItem.name]: TabbarItem,
         [Sku.name]: Sku,
-        [Button.name]:Button
+        [Button.name]: Button
     },
 
     data() {
         return {
-            ifLike:false,
-            likeColor:'black',
-            cartCount:'',
-            showSku:false,
+            ifLike: false,
+            likeColor: 'black',
+            cartCount: '',
+            showSku: false,
             sku: {
                 tree: [
                 ],
@@ -59,7 +59,7 @@ export default {
                 none_sku: false, // 是否无规格商品
                 hide_stock: false // 是否隐藏剩余库存
             },
-            offline:false,
+            offline: false,
             goods: {
                 name: '',
                 price: 0,
@@ -84,9 +84,13 @@ export default {
                 this.offline = !goods.isOnSale
                 let sku = response.data.sku
                 sku.price = (sku.price / 100).toFixed(2)
+                // TODO: 写死规格库存
+                sku.list && sku.list.forEach((item) => {
+                    item.stock_num = goods.stock
+                })
                 this.sku = sku
                 goods.thumb = new Array()
-                goods.picture = baseApi + '/file/getImgStream?idFile=' +goods.pic
+                goods.picture = baseApi + '/file/getImgStream?idFile=' + goods.pic
                 const gallery = goods.gallery.split(',')
                 for (var index in gallery) {
                     goods.thumb.push(baseApi + '/file/getImgStream?idFile=' + gallery[index])
@@ -94,22 +98,22 @@ export default {
                 this.goods = goods
 
                 const user = store.state.app.user
-                console.log('user',user)
-                if(user.nickName) {
-                    //获取当前用户购物车商品数量
-                    cart.count().then(response => {
-                        this.cartCount = response.data ===0?'':response.data
-                    })
-                    //判断当前用户是否收藏该产品
-                    favorite.ifLike(this.goods.id).then(response => {
-                        if (response.data === true) {
-                            this.likeColor = 'red'
-                            this.ifLike = true
-                        }
-                    })
-                }
+                console.log('user', user)
+                // if(user.nickName) {
+                //获取当前用户购物车商品数量
+                cart.count().then(response => {
+                    this.cartCount = parseInt(response.data) === 0 ? '' : response.data
+                })
+                //判断当前用户是否收藏该产品
+                favorite.ifLike(this.goods.id).then(response => {
+                    if (response.data === true) {
+                        this.likeColor = 'red'
+                        this.ifLike = true
+                    }
+                })
+                // }
             }).catch((err) => {
-                console.log('err',err)
+                console.log('err', err)
                 Toast(err)
             })
 
@@ -130,32 +134,35 @@ export default {
         buy() {
             this.showSku = true
         },
-        sorry() {
-            Toast('敬请期待')
-        },
         like() {
-            if(this.ifLike === false) {
+            if (this.ifLike === false) {
                 favorite.add(this.goods.id).then(response => {
                     Toast('收藏成功')
                     this.ifLike = true
                     this.likeColor = 'red'
+                }).catch(() => {
+                    Toast('收藏失败')
                 })
             }
         },
         onBuyClicked(skuData) {
-            let cartData = {idGoods:skuData.goodsId,idSku:this.sku.none_sku?'':skuData.selectedSkuComb.id,count:skuData.selectedNum}
-            cart.add(cartData).then( response => {
+            let cartData = { idGoods: skuData.goodsId, idSku: this.sku.none_sku ? '' : skuData.selectedSkuComb.id, count: skuData.selectedNum }
+            cart.add(cartData).then(response => {
                 this.$router.push('/cart');
                 this.showSku = false
+            }).catch(() => {
+                Toast('网络错误')
             })
         },
         onAddCartClicked(skuData) {
-            let cartData = {idGoods:skuData.goodsId,idSku:this.sku.none_sku?'':skuData.selectedSkuComb.id,count:skuData.selectedNum}
-            cart.add(cartData).then( response => {
+            let cartData = { idGoods: skuData.goodsId, idSku: this.sku.none_sku ? '' : skuData.selectedSkuComb.id, count: skuData.selectedNum }
+            cart.add(cartData).then(response => {
                 console.log(response)
-                Toast.success('已加入到购物车')
+                Toast.success('已加入购物车')
                 this.showSku = false
                 this.cartCount += response.data
+            }).catch(() => {
+                Toast('添加购物车失败')
             })
 
         }
