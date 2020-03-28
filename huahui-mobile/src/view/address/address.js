@@ -1,6 +1,6 @@
 import address from '@/api/address'
-import {AddressList, Col, Icon, NavBar, Row, Toast} from 'vant'
-import storage  from '@/utils/storage'
+import { AddressList, Col, Icon, NavBar, Row, Toast } from 'vant'
+import storage from '@/utils/storage'
 export default {
     components: {
         [AddressList.name]: AddressList,
@@ -18,19 +18,22 @@ export default {
             ]
         }
     },
-    mounted(){
+    mounted() {
         this.init()
     },
     methods: {
-        init(){
-            address.queryByUser().then( response => {
+        init() {
+            address.queryByUser().then(response => {
+                var list = response.data
                 this.list = response.data
-                for(var index in this.list){
-                    if(this.list[index].isDefault === true){
-                        this.chosenAddressId= this.list[index].id
+                for (var index in list) {
+                    list[index].address = list[index].province + list[index].city + list[index].district + list[index].addressDetail
+                    list[index].tel = list[index].mobile
+                    if (list[index].isDefault === true) {
+                        this.chosenAddressId = this.list[index].id
                     }
                 }
-            }).catch( err => {
+            }).catch(err => {
                 Toast(err.response.data.message)
             })
         },
@@ -40,10 +43,10 @@ export default {
         },
 
         onEdit(item, index) {
-            this.$router.push({path:'address/edit',query:{id:item.id}})
+            this.$router.push({ path: 'address/edit', query: { id: item.id } })
         },
         onClickLeft() {
-            storage.set('chosenAddressId',this.chosenAddressId)
+            storage.set('chosenAddressId', this.chosenAddressId)
             this.$router.go(-1)
         }
     }
