@@ -21,6 +21,12 @@ export default {
     mounted() {
         this.init()
     },
+    watch: {
+        chosenAddressId(val) {
+            storage.set('chosenAddressId', val)
+
+        }
+    },
     methods: {
         init() {
             address.queryByUser().then(response => {
