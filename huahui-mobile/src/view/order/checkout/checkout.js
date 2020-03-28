@@ -30,11 +30,11 @@ export default {
         this.init()
     },
     computed: {
-        addrText(){
-          if(this.addr){
-              return this.addr.name+'('+this.addr.tel+')'
-          }else{
-              return ''
+        addrText() {
+            if (this.addr) {
+                return this.addr.name + '(' + this.addr.mobile + ')'
+            } else {
+                return '请添加收货地址'
           }
         },
         submitBarText() {
