@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { router } from '@/router'
 import store from '@/store'
-import storage  from '@/utils/storage'
+import storage from '@/utils/storage'
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
@@ -16,6 +16,9 @@ service.interceptors.request.use(
       // 让每个请求携带自定义token 请根据实际情况自行修改
       config.headers['Authorization'] = storage.getToken()
     }
+    //TODO:默认openId，测试使用，后续记得删除
+    config.headers['openId'] = 'dhw1'
+
     return config
   },
   error => {
@@ -38,9 +41,9 @@ service.interceptors.response.use(
    */
   response => {
     // console.log('response',response)
-    if(response.headers.token){
+    if (response.headers.token) {
       //如果后台通过header返回token，说明token已经更新，则更新客户端本地token
-      store.dispatch('app/toggleToken',response.headers.token)
+      store.dispatch('app/toggleToken', response.headers.token)
     }
     const res = response.data
     if (res.code !== 20000) {
@@ -56,23 +59,24 @@ service.interceptors.response.use(
           //如果后台返回401，则清空本地用户信息信息并跳转至登录页
           store.dispatch('app/toggleUser', {})
           store.dispatch('app/toggleToken', '')
-          router.replace({
-            path: '/login',
-            query:{redirect:router.currentRoute.path}
-          })
+          // TODO: 跳转到未登录页面
+          // router.replace({
+          //   path: '/login',
+          //   query: { redirect: router.currentRoute.path }
+          // })
           return Promise.reject(error.response.data.message)
           break;
         case 500:
-          if(error.response.data.message && error.response.data.message.indexOf('relogin')>-1){
+          if (error.response.data.message && error.response.data.message.indexOf('relogin') > -1) {
             console.log('need relogin')
             store.dispatch('app/toggleUser', {})
             store.dispatch('app/toggleToken', '')
             router.replace({
               path: '/login',
-              query:{redirect:router.currentRoute.path}
+              query: { redirect: router.currentRoute.path }
             })
             return Promise.reject(error.response.data.message)
-          }else{
+          } else {
             return Promise.reject(error.response.data.message)
           }
           break;
