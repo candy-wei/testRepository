@@ -3,14 +3,14 @@ import request from '@/utils/request'
 export default {
     save: function (params) {
         return request({
-            url: '/user/order/save',
+            url: '/shop/order/save',
             method: 'post',
             params
         })
     },
     get: function (orderSn) {
         return request({
-            url: '/user/order/' + orderSn,
+            url: '/shop/order/' + orderSn,
             method: 'get'
         })
     },
@@ -20,7 +20,7 @@ export default {
      */
     remove: function (orderSn) {
         return request({
-            url: '/user/order/cancel/' + orderSn,
+            url: '/shop/order/cancel/' + orderSn,
             method: 'post'
         })
     },
@@ -30,7 +30,7 @@ export default {
      */
     getOrders: function (params) {
         return request({
-            url: '/user/order/getOrders',
+            url: '/shop/order/getOrders',
             method: 'get',
             params
         })
@@ -41,7 +41,7 @@ export default {
      */
     prepareCheckout: function (params) {
         return request({
-            url: '/user/order/prepareCheckout',
+            url: '/shop/order/prepareCheckout',
             params,
             method: 'get'
         })
@@ -50,9 +50,9 @@ export default {
      * 确认收货
      * @param params
      */
-    confirm(orderSn){
+    confirm(orderSn) {
         return request({
-            url: '/user/order/confirm/'+orderSn,
+            url: '/shop/order/confirm/' + orderSn,
             method: 'post'
         })
     }
