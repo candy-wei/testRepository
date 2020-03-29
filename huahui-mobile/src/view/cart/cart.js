@@ -1,5 +1,5 @@
 import cart from '@/api/cart'
-import { Checkbox, CheckboxGroup, Card, SubmitBar, Toast, NavBar, Tabbar, TabbarItem,Stepper, Button, Icon  } from 'vant';
+import { Checkbox, CheckboxGroup, Card, SubmitBar, Toast, NavBar, Tabbar, TabbarItem, Stepper, Button, Icon } from 'vant';
 const baseApi = process.env.VUE_APP_BASE_API
 import store from '@/store'
 export default {
@@ -18,17 +18,17 @@ export default {
 
     data() {
         return {
-            isLogin:false,
+            isLogin: true, // 写死为true
             // isLogin:true,
             activeFooter: 1,
             checkedGoods: [],
-            checkeAllCarts:[],
+            checkeAllCarts: [],
             cartList: [],
             checkedAll: true
         }
     },
-    mounted(){
-      this.init()
+    mounted() {
+        this.init()
     },
     computed: {
         submitBarText() {
@@ -36,45 +36,41 @@ export default {
             return '结算' + (count ? `(${count})` : '');
         },
         totalPrice() {
-                return this.cartList.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? (parseFloat(item.price)*item.count) : 0), 0)
+            return this.cartList.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? (parseFloat(item.price) * item.count) : 0), 0)
         }
     },
 
     methods: {
-        init(){
-            const user = store.state.app.user
-            this.isLogin = user.nickName
-            if(this.isLogin) {
-                cart.queryByUser().then(response => {
-                    let cartList = response.data
-                    for (const index in cartList) {
-                        let cart = cartList[index]
-                        cart.thumb = baseApi + '/file/getImgStream?idFile=' + cart.goods.pic
-                        this.checkedGoods.push(cartList[index].id + '')
-                    }
-                    this.cartList = cartList
-                }).catch((err) => {
+        init() {
+            cart.queryByUser().then(response => {
+                let cartList = response.data
+                for (const index in cartList) {
+                    let cart = cartList[index]
+                    cart.thumb = baseApi + '/file/getImgStream?idFile=' + cart.goods.pic
+                    this.checkedGoods.push(cartList[index].id + '')
+                }
+                this.cartList = cartList
+            }).catch((err) => {
 
-                })
-            }
+            })
         },
         submit() {
-            this.$router.push('checkout')
+            this.$router.push('/checkout')
         },
         formatPrice(price) {
             return (price / 100).toFixed(2);
         },
         stepperEvent(item, arg) {
             const count = arg[0];
-            cart.update(item.id,count)
+            cart.update(item.id, count)
         },
         toHome() {
-            this.$router.push('/')
+            this.$router.push('/index')
         },
         toLogin() {
-            this.$router.push({path:'login', query: {redirect:'cart'}})
+            this.$router.push({ path: 'login', query: { redirect: 'cart' } })
         },
-        checkAll( ) {
+        checkAll() {
             if (this.checkedGoods.length === this.cartList.length) {
                 this.checkeAllCarts = this.checkedGoods
                 this.checkedGoods = []
