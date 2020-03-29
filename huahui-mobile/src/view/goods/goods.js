@@ -86,7 +86,7 @@ export default {
                 sku.price = (sku.price / 100).toFixed(2)
                 // TODO: 写死规格库存
                 sku.list && sku.list.forEach((item) => {
-                    item.stock_num = goods.stock
+                    item.stock_num = 999
                 })
                 this.sku = sku
                 goods.thumb = new Array()

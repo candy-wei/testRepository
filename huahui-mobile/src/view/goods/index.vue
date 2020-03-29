@@ -14,7 +14,7 @@
       </van-cell>
       <van-cell class="goods-express">
         <van-col span="10">运费：免运费</van-col>
-        <van-col span="14">剩余：{{ goods.stock }}</van-col>
+        <!-- <van-col span="14">剩余：{{ goods.stock }}</van-col> -->
       </van-cell>
     </van-cell-group>
 
