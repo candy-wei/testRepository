@@ -14,7 +14,8 @@ export default {
             areaList: areaData,
             columnsPlaceholder: ['请选择', '请选择', '请选择'],
             searchResult: [],
-            addressInfo: {}
+            addressInfo: {},
+            showDefault: false
         }
     },
     created() {
@@ -25,6 +26,7 @@ export default {
             const id = this.$route.query.id
             if (id) {
                 this.showDelete = true
+                this.showDefault = true
                 address.get(id).then(response => {
                     response.data.tel = response.data.mobile
                     this.addressInfo = response.data
@@ -40,7 +42,7 @@ export default {
                 district: info.county,
                 addressDetail: info.addressDetail,
                 areaCode: info.areaCode,
-                tel: info.tel,
+                mobile: info.tel,
                 name: info.name,
                 postCode: info.postalCode,
                 isDefault: info.isDefault

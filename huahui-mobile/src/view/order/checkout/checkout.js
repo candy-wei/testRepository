@@ -50,7 +50,6 @@ export default {
         init() {
             const chosenAddressId = storage.get('chosenAddressId')
             order.prepareCheckout({ chosenAddressId: chosenAddressId }).then(response => {
-            order.prepareCheckout({chosenAddressId:chosenAddressId}).then(response => {
                 let cartList = response.data.list
                 this.addr = response.data.addr
                 for (let index in cartList) {
