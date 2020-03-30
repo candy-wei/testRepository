@@ -1,4 +1,4 @@
-import {Button, Cell, CellGroup, NavBar, Radio, RadioGroup, Toast} from 'vant';
+import { Button, Cell, CellGroup, NavBar, Radio, RadioGroup, Toast } from 'vant';
 
 export default {
     components: {
@@ -26,12 +26,13 @@ export default {
         init() {
             let orderSn = this.$route.query.orderSn
             let totalPrice = this.$route.query.totalPrice
-            this.order ={orderSn:orderSn,totalPrice:totalPrice}
+            this.order = { orderSn: orderSn, totalPrice: totalPrice }
         },
         pay() {
             let payTypeName = this.payType == 'wxpay' ? '微信支付' : '支付宝'
             Toast('准备使用' + payTypeName + '支付')
-            this.$router.push('/')
+            Toast('没有调用接口')
+            // this.$router.push('/')
         },
         formatPrice(price) {
             return (price / 100).toFixed(2);

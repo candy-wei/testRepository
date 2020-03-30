@@ -88,6 +88,7 @@ export default {
                 sku.list && sku.list.forEach((item) => {
                     item.stock_num = 999
                 })
+                !sku.stock_num && (sku.stock_num = 999)
                 this.sku = sku
                 goods.thumb = new Array()
                 goods.picture = baseApi + '/file/getImgStream?idFile=' + goods.pic
@@ -146,6 +147,7 @@ export default {
             }
         },
         onBuyClicked(skuData) {
+            console.log("ooo")
             let cartData = { idGoods: skuData.goodsId, idSku: this.sku.none_sku ? '' : skuData.selectedSkuComb.id, count: skuData.selectedNum }
             cart.add(cartData).then(response => {
                 this.$router.push('/cart');

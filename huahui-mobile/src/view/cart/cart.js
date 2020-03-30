@@ -32,11 +32,11 @@ export default {
     },
     computed: {
         submitBarText() {
-            const count = this.checkedGoods.length;
-            return '结算' + (count ? `(${count})` : '');
+            const amount = this.checkedGoods.length;
+            return '结算' + (amount ? `(${amount})` : '');
         },
         totalPrice() {
-            return this.cartList.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? (parseFloat(item.price) * item.count) : 0), 0)
+            return this.cartList.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? (parseFloat(item.price) * item.amount) : 0), 0)
         }
     },
 
@@ -47,7 +47,7 @@ export default {
                 for (const index in cartList) {
                     let cart = cartList[index]
                     cart.thumb = baseApi + '/file/getImgStream?idFile=' + cart.goods.pic
-                    this.checkedGoods.push(cartList[index].id + '')
+                    this.checkedGoods.push(cartList[index].id)
                 }
                 this.cartList = cartList
             }).catch((err) => {
