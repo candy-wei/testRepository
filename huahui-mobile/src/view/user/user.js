@@ -1,4 +1,5 @@
 import userApi from '@/api/user'
+import redpackApi from '@/api/redpack'
 import store from '@/store'
 
 import { Cell, CellGroup, Col, Icon, Row, Tabbar, TabbarItem, Toast, Image, Grid, GridItem, Dialog, Popup } from 'vant';
@@ -73,10 +74,23 @@ export default {
         },
 
         onTapRedPackImg() {
+            redpackApi.redpack().then(res => {
+                if (res.errorCode && res.errorCode !== 'SUCCESS') {
+                    this.$toast(res.errorMsg)
+                    return
+                }
+                this.showReceiveRedPackImg = false
+                this.showRedPackMoney = true
+            })
+
+        },
+        onCloseRedPackImg() {
             this.showReceiveRedPackImg = false
-            this.showRedPackMoney = true
         },
         opTapRedPackMoney() {
+            this.showRedPackMoney = false
+        },
+        onCloseRedPackMoney() {
             this.showRedPackMoney = false
         },
         open() {

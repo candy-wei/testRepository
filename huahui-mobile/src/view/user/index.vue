@@ -3,13 +3,7 @@
     <div class="header">
       <van-row class="header-row" type="flex" justify="center" align="center" span="8">
         <van-col span="12" class="header-row-left">
-          <van-image
-            class="avartar"
-            round
-            width="50px"
-            height="50px"
-            :src="userInfo.headImgUrl"
-          />
+          <van-image class="avartar" round width="50px" height="50px" :src="userInfo.headImgUrl" />
           <span>{{userInfo.nickName}}</span>
         </van-col>
         <van-col span="16" class="header-row-right">
@@ -78,6 +72,7 @@
       :style="{ width: '100%', 'background-color': 'transparent' }"
     >
       <img src="@/assets/img/receiver_red_pack.png" width="100%" @click="onTapRedPackImg" />
+      <img src="@/assets/img/close.png" class="close_btn" @click="onCloseRedPackImg" />
     </van-popup>
 
     <!-- 红包金额 -->
@@ -91,6 +86,7 @@
         <div class="redpack-title">恭喜你!</div>
         <div>抽中0.5元红包</div>
       </div>
+      <img src="@/assets/img/close.png" class="close_btn" @click="onCloseRedPackMoney" />
     </van-popup>
 
     <van-tabbar v-model="activeFooter">
@@ -281,5 +277,14 @@
       font-size: 24px;
     }
   }
+}
+
+// 红包关闭按钮
+.close_btn {
+  position: absolute;
+  right: 10%;
+  top: 10%;
+  width: 32px;
+  height: 32px;
 }
 </style>
