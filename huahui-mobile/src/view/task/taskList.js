@@ -1,4 +1,4 @@
-
+import userApi from "@/api/user"
 import { NavBar, List, Panel, Row, Col, Button, } from 'vant';
 
 export default {
@@ -27,7 +27,9 @@ export default {
     },
 
     getTaskList() {
-
+      userApi.getTask().then(response => {
+        this.taskList = response.data
+      })
     },
 
     onClickLeft() {

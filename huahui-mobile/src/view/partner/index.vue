@@ -3,24 +3,19 @@
     <van-tabs animated>
       <van-tab title="我的推荐">
         <van-list>
-          <template v-if="true">
+          <template v-if="recommendList.length > 0">
             <van-row
               class="recomend-box"
               type="flex"
               align="center"
-              v-for="item in [1, 2, 4]"
+              v-for="item in recommendList"
               :key="item"
             >
               <van-col span="8" class="avatar-box">
-                <van-image
-                  round
-                  width="60px"
-                  height="60px"
-                  src="https://img.yzcdn.cn/vant/cat.jpeg"
-                />
+                <van-image round width="60px" height="60px" :src="item.headImgUrl" />
               </van-col>
               <van-col offset="1" span="`12" class="name-box">
-                <span>nick</span>
+                <span>{{item.nickName}}</span>
               </van-col>
             </van-row>
           </template>
@@ -34,24 +29,19 @@
 
       <van-tab title="我的团队">
         <van-list>
-          <template v-if="true">
+          <template v-if="teamList.length > 0">
             <van-row
               class="recomend-box"
               type="flex"
               align="center"
-              v-for="item in [1, 2, 4]"
+              v-for="item in teamList"
               :key="item"
             >
               <van-col span="8" class="avatar-box">
-                <van-image
-                  round
-                  width="60px"
-                  height="60px"
-                  src="https://img.yzcdn.cn/vant/cat.jpeg"
-                />
+                <van-image round width="60px" height="60px" :src="item.headImgUrl" />
               </van-col>
               <van-col offset="1" span="`12" class="name-box">
-                <span>team</span>
+                <span>{{item.nickName}}</span>
               </van-col>
             </van-row>
           </template>

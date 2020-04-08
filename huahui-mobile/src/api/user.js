@@ -49,5 +49,24 @@ export default {
             }
         })
     },
+    getTask: function () {
+        return request({
+            url: '/shop/user/tasks',
+            method: 'post',
+        })
+    },
+    getMyTeam: function () {
+        return request({
+            url: '/shop/user/team',
+            method: 'post',
+        })
+    },
+    getMyRecommend: function () {
+        return request({
+            url: '/shop/user/recommend',
+            method: 'post',
+        })
+    },
+
 }
 

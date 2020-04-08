@@ -1,7 +1,7 @@
 import { NavBar, Row, Col, Panel, Cell, Tab, Tabs, Image, List } from 'vant';
 import html2canvas from 'html2canvas';
 import QRcode from '@xkeshi/vue-qrcode'
-
+import userApi from "@/api/user"
 
 export default {
 
@@ -23,11 +23,28 @@ export default {
       qrcodeUrl: "http://www.baidu.com",
       posterImg: "",
       showPoster: false,
+      recommendList: [],
+      teamList: []
     }
   },
   mounted() {
+    this.init()
   },
   methods: {
+    init() {
+      this.getMyRecommend()
+      this.getMyTeam()
+    },
+    getMyRecommend() {
+      userApi.getMyRecommend().then(res => {
+        this.recommendList = res.data
+      })
+    },
+    getMyTeam() {
+      userApi.getMyTeam().then(res => {
+        this.teamList = res.data
+      })
+    },
     posterLoad() {
       setTimeout(() => {
         this.createPoster()
