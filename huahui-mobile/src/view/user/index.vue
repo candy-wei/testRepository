@@ -8,16 +8,16 @@
             round
             width="50px"
             height="50px"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
+            :src="userInfo.headImgUrl"
           />
-          <span>September</span>
+          <span>{{userInfo.nickName}}</span>
         </van-col>
         <van-col span="16" class="header-row-right">
           <van-row>
             <img :src="require('@/assets/img/level'+ 3 +'.png')" width="26px" height="26px" alt />
-            <span style="margin-left:10px;margin-bottom: 10px;">{{'普通会员'}}</span>
+            <span style="margin-left:10px;margin-bottom: 10px;">{{userInfo.vip}}</span>
           </van-row>
-          <div class="integral">累计积分: {{100}} 分</div>
+          <div class="integral">累计积分: {{userInfo.points}} 分</div>
         </van-col>
       </van-row>
 
@@ -46,7 +46,7 @@
     <van-grid :column-num="2" class="redpack-group">
       <van-grid-item info="99+" to="/index">
         <img src="@/assets/img/redpack4.png" class="redpack-img" />
-        <span class="redpack-label">红包总数{{10}}个</span>
+        <span class="redpack-label">红包总数{{userInfo.redpacketAmount}}个</span>
       </van-grid-item>
 
       <van-grid-item to="/wallet">
@@ -56,7 +56,7 @@
 
       <van-grid-item @click="onTapTodayRedPack">
         <img src="@/assets/img/redpack5.png" class="redpack-img tada" />
-        <span class="redpack-label">每日可领红包12/1个</span>
+        <span class="redpack-label">每日可领红包{{userInfo.redpacketReceive}}个</span>
       </van-grid-item>
 
       <van-grid-item to="/taskList">
