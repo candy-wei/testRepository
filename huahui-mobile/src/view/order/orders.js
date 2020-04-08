@@ -38,6 +38,7 @@ export default {
             imgUrl:baseApi+'/file/getImgStream?idFile=',
             listQuery: {
                 page: 1,
+                pageNum: 6,
                 limit: 20,
                 status: 0
             },

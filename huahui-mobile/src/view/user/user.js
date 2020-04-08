@@ -22,6 +22,14 @@ export default {
             activeFooter: 2,
             showReceiveRedPackImg: false,
             showRedPackMoney: false,
+            userInfo: {
+                headImgUrl: '',
+                nickName: '',
+                points: 0,
+                redpacketAmount: 0,
+                redpacketReceive: 0,
+                vip: ''
+            }
         }
     },
     mounted() {
@@ -30,7 +38,7 @@ export default {
     methods: {
         init() {
             userApi.getUserInfo().then(response => {
-
+                this.userInfo = response.data
             }).catch((err) => {
                 // this.$router.replace({ path: 'login', query: { redirect: 'user' } })
             })

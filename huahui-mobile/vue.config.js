@@ -4,7 +4,7 @@ const path = require('path')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
-const port = process.env.PORT || 8080 // dev port
+const port = process.env.PORT || 8081 // dev port
 const name = 'pos'
 module.exports = {
   outputDir: 'dist',
@@ -12,7 +12,6 @@ module.exports = {
   lintOnSave: false,
   productionSourceMap: false,
   devServer: {
-    port: port,
     open: true,
     overlay: {
       warnings: false,

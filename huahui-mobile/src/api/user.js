@@ -3,7 +3,7 @@ import request from '@/utils/request'
 export default {
     getUserInfo: function () {
         return request({
-            url: '/user/getInfo',
+            url: '/shop/user/getInfo',
             method: 'get'
         })
     },

@@ -27,7 +27,7 @@ const routes = [
         name: 'index',
         component: () => import('./view/index'),
         meta: {
-            title: '邻家小铺'
+            title: '宁远信息'
         }
     },
     {
