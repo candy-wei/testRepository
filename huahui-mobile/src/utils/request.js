@@ -46,7 +46,7 @@ service.interceptors.response.use(
       store.dispatch('app/toggleToken', response.headers.token)
     }
     const res = response.data
-    if (res.code !== 20000) {
+    if (res.code !== 200) {
       return Promise.reject(res.msg || 'error')
     } else {
       return res
