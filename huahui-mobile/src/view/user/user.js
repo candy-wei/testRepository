@@ -1,4 +1,6 @@
 import userApi from '@/api/user'
+import store from '@/store'
+
 import { Cell, CellGroup, Col, Icon, Row, Tabbar, TabbarItem, Toast, Image, Grid, GridItem, Dialog, Popup } from 'vant';
 
 export default {
@@ -37,11 +39,18 @@ export default {
     },
     methods: {
         init() {
-            userApi.getUserInfo().then(response => {
-                this.userInfo = response.data
-            }).catch((err) => {
-                // this.$router.replace({ path: 'login', query: { redirect: 'user' } })
-            })
+            let user = store.state.app.user
+            if (JSON.stringify(user) !== "{}") {
+                this.userInfo = user
+            } else {
+                userApi.getUserInfo().then(response => {
+                    this.userInfo = response.data
+                    store.dispatch("app/toggleUser", response.data)
+                }).catch((err) => {
+                    // this.$router.replace({ path: 'login', query: { redirect: 'user' } })
+                })
+            }
+
         },
         sorry() {
             Toast('敬请期待')
