@@ -4,7 +4,7 @@ export default {
     getUserInfo: function () {
         return request({
             url: '/shop/user/getInfo',
-            method: 'get'
+            method: 'post'
         })
     },
     updateUserName: function (userName) {
@@ -20,27 +20,27 @@ export default {
             params
         })
     },
-    updateGender:function(gender) {
+    updateGender: function (gender) {
         return request({
             url: '/user/updateGender/' + gender,
             method: 'post'
         })
     },
-    updatePassword:function(oldPwd,password,rePassword) {
+    updatePassword: function (oldPwd, password, rePassword) {
         return request({
-            url: '/user/updatePassword/' + oldPwd+'/'+password+'/'+rePassword,
+            url: '/user/updatePassword/' + oldPwd + '/' + password + '/' + rePassword,
             method: 'post'
         })
     },
-    upload:function(file){
-        console.log('file',file)
+    upload: function (file) {
+        console.log('file', file)
         return request({
             url: '/file/upload/base64',
             method: 'post',
-            data:file
+            data: file
         })
     },
-    sendSmsCode:function(mobile) {
+    sendSmsCode: function (mobile) {
         return request({
             url: '/user/sendSmsCode',
             method: 'post',
