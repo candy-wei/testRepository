@@ -3,7 +3,7 @@
     <template v-for="task in taskList">
       <van-panel :title="task.title" icon="label" :key="task.content" class="task-box">
         <van-row class="task-content">
-          <van-col span="17">{{task.content}}</van-col>
+          <van-col span="17" style="white-space:pre-line">{{task.content}}</van-col>
           <van-col span="5" offset="2">
             <van-button
               round
