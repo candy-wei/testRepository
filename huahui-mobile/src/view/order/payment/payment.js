@@ -1,4 +1,5 @@
 import { Button, Cell, CellGroup, NavBar, Radio, RadioGroup, Toast } from 'vant';
+import storage from "@/utils/storage"
 
 export default {
     components: {
@@ -29,9 +30,8 @@ export default {
             this.order = { orderSn: orderSn, totalPrice: totalPrice }
         },
         pay() {
-            let payTypeName = this.payType == 'wxpay' ? '微信支付' : '支付宝'
-            Toast('准备使用' + payTypeName + '支付')
-            Toast('没有调用接口')
+            let openId = storage.getOpenId()
+            window.location.href = `${process.env.VUE_APP_BASE_API}/wx/trigger/${this.order.orderSn}/${openId}`
             // this.$router.push('/')
         },
         formatPrice(price) {
