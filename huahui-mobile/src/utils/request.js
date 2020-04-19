@@ -16,8 +16,10 @@ service.interceptors.request.use(
       // 让每个请求携带自定义token 请根据实际情况自行修改
       config.headers['Authorization'] = storage.getToken()
     }
-    //TODO:默认openId，测试使用，后续记得删除
-    config.headers['openId'] = 'dhw1'
+
+    if (storage.getOpenId()) {
+      config.headers['openId'] = storage.getOpenId()
+    }
 
     return config
   },
@@ -67,10 +69,10 @@ service.interceptors.response.use(
             console.log('need relogin')
             store.dispatch('app/toggleUser', {})
             store.dispatch('app/toggleToken', '')
-            router.replace({
-              path: '/login',
-              query: { redirect: router.currentRoute.path }
-            })
+            // router.replace({
+            //   path: '/login',
+            //   query: { redirect: router.currentRoute.path }
+            // })
             return Promise.reject(error.response.data.message)
           } else {
             return Promise.reject(error.response.data.message)

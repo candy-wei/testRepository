@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/store'
+import storage from '@/utils/storage'
+import util from '@/utils/util'
+
 Vue.use(Router)
 
 const routes = [
@@ -178,19 +181,14 @@ router.beforeEach((to, from, next) => {
     if (title) {
         document.title = title;
     }
-    // 判断该路由是否需要登录权限
-    // if (to.meta.requireAuth) {
-    //     if (store.state.app.token) {
-    //         next();
-    //     } else {
-    //         next({
-    //             path: '/login',
-    //             query: { redirect: to.fullPath }  // 将跳转的路由path作为参数，登录成功后跳转到该路由
-    //         })
-    //     }
-    // } else {
-    //     next()
-    // }
+
+    //如果没有缓存openId，则缓存
+    if (!storage.getOpenId()) {
+        let query = util.getQuery()
+        if (query.openId) {
+            storage.setOpenId(query.openId)
+        }
+    }
     next()
 })
 

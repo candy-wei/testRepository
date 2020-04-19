@@ -1,22 +1,32 @@
 // import Cookies from 'js-cookie'
 
-const COOKIE_KEY_PRE="lite-shop-mobile-"
-const tokenKey = COOKIE_KEY_PRE+"token"
+const COOKIE_KEY_PRE = "shop-mobile-"
+const tokenKey = COOKIE_KEY_PRE + "token"
+const openIdKey = COOKIE_KEY_PRE + "openId"
 export default {
-  getToken:function(){
+  getToken: function () {
     return localStorage.getItem(tokenKey)
   },
-  setToken:function(token){
-    localStorage.setItem(tokenKey,token)
+  setToken: function (token) {
+    localStorage.setItem(tokenKey, token)
   },
-  removeToken:function(){
+  removeToken: function () {
     localStorage.removeItem(tokenKey)
   },
-  set:function(key,value){
-    localStorage.setItem(key,value)
+  set: function (key, value) {
+    localStorage.setItem(key, value)
   },
-  get:function(key){
+  get: function (key) {
     return localStorage.getItem(key)
+  },
+  setOpenId: function (openId) {
+    localStorage.setItem(openIdKey, openId)
+  },
+  getOpenId: function () {
+    return localStorage.getItem(openIdKey)
+  },
+  removeOpenId: function () {
+    localStorage.removeItem(openIdKey)
   }
 
 }

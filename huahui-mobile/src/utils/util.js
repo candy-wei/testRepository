@@ -14,5 +14,23 @@ export default {
 
         return [year, month, day].map(item => item > 9 ? item : '0' + item).join('-') + " " +
             [hour, minute, second].map(item => item > 9 ? item : '0' + item).join(":")
+    },
+
+    getQuery: function (url) {
+        url = url || window.location.href
+        url = url.split("#")[0]
+
+        // 如果没有？带参数，直接返回一个空对象
+        if (!/\?/.test(url)) {
+            return {}
+        }
+
+        let queryArr = url.split("?")[1].split("&")
+        let queryObject = {}
+        for (let i = 0; i < queryArr.length; i++) {
+            let temp = queryArr[i].split("=")
+            queryObject[temp[0]] = temp[1]
+        }
+        return queryObject
     }
 }
