@@ -50,7 +50,7 @@
 
       <van-grid-item @click="onTapTodayRedPack">
         <img src="@/assets/img/redpack5.png" class="redpack-img tada" />
-        <span class="redpack-label">每日可领红包{{userInfo.redpacketReceive}}个</span>
+        <span class="redpack-label">每日可领红包{{userInfo.receiverCount}}/{{userInfo.redpacketReceive}}个</span>
       </van-grid-item>
 
       <van-grid-item to="/taskList">
@@ -71,7 +71,8 @@
       v-model="showReceiveRedPackImg"
       :style="{ width: '100%', 'background-color': 'transparent' }"
     >
-      <img src="@/assets/img/receiver_red_pack.png" width="100%" @click="onTapRedPackImg" />
+      <img src="@/assets/img/receiver_red_pack_bg.png" width="100%" @click="onTapRedPackImg" />
+      <img src="@/assets/img/receiver_red_pack_btn.png" class="open_btn" @click="onTapRedPackImg" />
       <img src="@/assets/img/close.png" class="close_btn" @click="onCloseRedPackImg" />
     </van-popup>
 
@@ -84,7 +85,7 @@
       <img src="@/assets/img/receiver_red_pack.png" width="100%" @click="opTapRedPackMoney" />
       <div class="redpack-word">
         <div class="redpack-title">恭喜你!</div>
-        <div>抽中0.5元红包</div>
+        <div>抽中{{redpack}}元红包</div>
       </div>
       <img src="@/assets/img/close.png" class="close_btn" @click="onCloseRedPackMoney" />
     </van-popup>
@@ -286,5 +287,23 @@
   top: 10%;
   width: 32px;
   height: 32px;
+}
+
+// 红包开启按钮
+@keyframes scale {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+.open_btn {
+  position: absolute;
+  right: 42%;
+  top: 55%;
+  width: 60px;
+  height: 60px;
+  animation: scale 0.5s infinite alternate forwards;
 }
 </style>

@@ -30,9 +30,11 @@ export default {
                 nickName: '',
                 points: 0,
                 redpacketAmount: 0,
-                redpacketReceive: 0,
+                redpacketReceive: 0, // 可领红包数
+                receiverCount: 0, // 已领取红包数
                 vip: ''
-            }
+            },
+            redpack: 0.00, // 领取的红包金额
         }
     },
     mounted() {
@@ -44,14 +46,17 @@ export default {
             if (JSON.stringify(user) !== "{}") {
                 this.userInfo = user
             } else {
-                userApi.getUserInfo().then(response => {
-                    this.userInfo = response.data
-                    store.dispatch("app/toggleUser", response.data)
-                }).catch((err) => {
-                    // this.$router.replace({ path: 'login', query: { redirect: 'user' } })
-                })
+                this.getUserInfo()
             }
 
+        },
+        getUserInfo() {
+            userApi.getUserInfo().then(response => {
+                this.userInfo = response.data
+                store.dispatch("app/toggleUser", response.data)
+            }).catch((err) => {
+                // this.$router.replace({ path: 'login', query: { redirect: 'user' } })
+            })
         },
         sorry() {
             Toast('敬请期待')
@@ -67,21 +72,29 @@ export default {
         },
 
         onTapTodayRedPack() {
-            let redPackNum = 12;
+            let redPackNum = this.userInfo.redpacketReceive;
             if (redPackNum > 0) {
                 this.showReceiveRedPackImg = true
+            } else {
+                this.$toast("可领红包数不足")
             }
+
         },
 
         onTapRedPackImg() {
             redpackApi.redpack().then(res => {
                 if (res.errorCode && res.errorCode !== 'SUCCESS') {
                     this.$toast(res.errorMsg)
+                    this.showReceiveRedPackImg = false
                     return
                 }
+                this.redpack = res
+                this.userInfo.redpacketReceive--
+
                 this.showReceiveRedPackImg = false
                 this.showRedPackMoney = true
             })
+
 
         },
         onCloseRedPackImg() {
