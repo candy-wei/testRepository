@@ -90,6 +90,16 @@
       <img src="@/assets/img/close.png" class="close_btn" @click="onCloseRedPackMoney" />
     </van-popup>
 
+    <!-- 活动规则 -->
+    <van-popup
+      v-model="showRule"
+      :style="{ width: '100%', 'background-color': 'transparent' }"
+      class="rule-box"
+    >
+      <img src="@/assets/img/rule.png" width="90%" style="margin-left:5%" />
+      <img src="@/assets/img/close.png" class="close_btn" @click="onCloseRule" />
+    </van-popup>
+
     <van-tabbar v-model="activeFooter">
       <van-tabbar-item icon="home-o" replace to="/index">首页</van-tabbar-item>
       <van-tabbar-item icon="cart-o" replace to="/cart">购物车</van-tabbar-item>
@@ -163,12 +173,19 @@
   }
 }
 
+// 规则
 .rule {
   position: absolute;
   right: 10px;
   top: 10px;
   color: #eee;
 }
+
+.rule-box {
+  padding: 100px 5%;
+}
+// 规则
+
 .task-row {
   background: #ffffff;
 }

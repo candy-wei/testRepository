@@ -35,6 +35,7 @@ export default {
                 vip: ''
             },
             redpack: 0.00, // 领取的红包金额
+            showRule: false // 显示规则弹窗
         }
     },
     mounted() {
@@ -66,12 +67,15 @@ export default {
         },
 
         onTapRule() {
-            this.$dialog.alert({
-                message: "规则内容规则内容规则内容规则内容规则内容规则内容规则内容规则内容"
-            })
+            this.showRule = true
+        },
+
+        onCloseRule() {
+            this.showRule = false
         },
 
         onTapTodayRedPack() {
+            this.onCloseRule()
             let redPackNum = this.userInfo.redpacketReceive;
             if (redPackNum > 0) {
                 this.showReceiveRedPackImg = true
@@ -82,6 +86,7 @@ export default {
         },
 
         onTapRedPackImg() {
+            this.onCloseRule()
             redpackApi.redpack().then(res => {
                 if (res.errorCode && res.errorCode !== 'SUCCESS') {
                     this.$toast(res.errorMsg)
