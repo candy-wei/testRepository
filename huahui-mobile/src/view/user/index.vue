@@ -8,7 +8,7 @@
         </van-col>
         <van-col span="16" class="header-row-right">
           <van-row>
-            <img :src="require('@/assets/img/level'+ 3 +'.png')" width="26px" height="26px" alt />
+            <van-image :src="require('@/assets/img/level'+ 3 +'.png')" width="26px" height="26px"></van-image>
             <span style="margin-left:10px;margin-bottom: 10px;">{{userInfo.vip}}</span>
           </van-row>
           <div class="integral">累计积分: {{userInfo.points}} 分</div>
@@ -16,7 +16,7 @@
       </van-row>
 
       <div class="rule" @click="onTapRule">
-        <van-icon name="question-o" />&nbsp;活动规则
+        <van-icon name="question-o" />&nbsp;会员规则
       </div>
     </div>
 
@@ -50,7 +50,7 @@
 
       <van-grid-item @click="onTapTodayRedPack">
         <img src="@/assets/img/redpack5.png" class="redpack-img tada" />
-        <span class="redpack-label">每日可领红包{{userInfo.receiverCount}}/{{userInfo.redpacketReceive}}个</span>
+        <span class="redpack-label">每日可领红包{{userInfo.redpacketReceive}}/{{userInfo.receiverCount}}个</span>
       </van-grid-item>
 
       <van-grid-item to="/taskList">

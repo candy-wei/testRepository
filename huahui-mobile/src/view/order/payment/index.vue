@@ -17,7 +17,6 @@
             slot-scope="props"
             src="@/assets/img/wxpay.png"
           />
-          <van-radio slot="right-icon" name="wxpay" />
         </van-cell>
       </van-cell-group>
     </van-radio-group>

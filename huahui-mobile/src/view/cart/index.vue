@@ -2,23 +2,42 @@
   <div class="cart">
     <van-checkbox-group
       class="card-goods"
+      ref="checkboxGroup"
       v-model="checkedGoods"
+      @change="onChangBox"
       v-if="isLogin && cartList.length>0"
     >
       <div v-for="item in cartList" :key="item.id" class="card-goods__item">
-        <van-checkbox :name="item.id"></van-checkbox>
-        <van-card
-          style="margin-left:15px;"
-          :title="item.title"
-          :desc="item.goods.descript"
-          :num="item.amount"
-          :price="formatPrice(item.price)"
-          :thumb="item.thumb"
-        >
-          <div slot="footer">
-            <van-stepper v-model="item.amount" @change="stepperEvent(item,arguments)" disableInput />
+        <van-swipe-cell>
+          <div style>
+            <van-checkbox :name="item.id"></van-checkbox>
           </div>
-        </van-card>
+          <van-card
+            style="margin-left:15px;"
+            :title="item.title"
+            :desc="item.goods.descript"
+            :num="item.amount"
+            :price="formatPrice(item.price)"
+            :thumb="item.thumb"
+          >
+            <div slot="footer">
+              <van-stepper
+                v-model="item.amount"
+                @change="stepperEvent(item,arguments)"
+                disableInput
+              />
+            </div>
+          </van-card>
+          <template #right>
+            <van-button
+              square
+              text="删除"
+              type="danger"
+              style="height:100%"
+              @click="remove(item.id)"
+            />
+          </template>
+        </van-swipe-cell>
       </div>
       <br />
       <br />

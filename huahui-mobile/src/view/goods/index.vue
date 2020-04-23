@@ -9,11 +9,10 @@
     <van-cell-group>
       <van-cell>
         <div class="goods-title">{{ goods.name }}</div>
-        <div class="goods-desc">{{ goods.descript }}</div>
         <div class="goods-price">{{ formatPrice(goods.price) }}</div>
       </van-cell>
       <van-cell class="goods-express">
-        <van-col span="10">运费：免运费</van-col>
+        <van-col span="10">运费：{{goods.fare}}</van-col>
         <!-- <van-col span="14">剩余：{{ goods.stock }}</van-col> -->
       </van-cell>
     </van-cell-group>
