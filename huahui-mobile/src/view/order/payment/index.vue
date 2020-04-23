@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar title="收银台" />
+    <!-- <van-nav-bar title="收银台" /> -->
     <van-cell-group>
       <van-cell title="订单编号" :value="order.orderSn" />
       <van-cell title="应付金额">
