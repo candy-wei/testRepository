@@ -12,7 +12,6 @@
           <br />
         </div>
         <div slot="footer" class="footer_btn">
-          <van-button size="small" type="default" @click="contact">联系客服</van-button>
           <van-button
             size="small"
             type="danger"

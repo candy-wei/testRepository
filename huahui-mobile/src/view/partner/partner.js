@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       show: false,
-      qrcodeUrl: "http://www.baidu.com",
+      qrcodeUrl: "",
       posterImg: "",
       showPoster: false,
       recommendList: [],

@@ -50,7 +50,7 @@ export default {
         if(this.$route.query){
             let status = this.$route.query.status
             //使用状态减一作为导航栏的序号，如果状态值改变，则不能使用该方法
-            this.activeNav = parseInt(status) - 1
+            this.activeNav = parseInt(status)
             this.listQuery.status = status
         }
       this.init()
@@ -69,7 +69,7 @@ export default {
         },
         getData(){
             order.getOrders(this.listQuery).then( response => {
-                let orderList = response.data.records
+                let orderList = response.data.list
                 for(let index in  orderList){
                     let orders = orderList[index]
                     orders.title=''+orders.createTime

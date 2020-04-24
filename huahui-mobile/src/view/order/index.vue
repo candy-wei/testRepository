@@ -15,7 +15,6 @@
         :finished="finished"
         :immediate-check="false"
         finished-text="没有更多了"
-        @load="getData"
       >
         <van-panel
           v-for="(item, index) in orderList"
@@ -25,14 +24,14 @@
           @click.native="toOrderDetail(item.orderSn)"
         >
           <van-card
-            v-for="(orderItem, index2) in item.items"
+            v-for="(orderItem, index2) in item.goods"
             :key="index2"
             :title="orderItem.title"
-            :desc="orderItem.goods.descript"
+            :desc="orderItem.descript"
             :price="formatPrice(orderItem.price)"
             :num="orderItem.count"
-            @click.stop="toGoods(orderItem.goods.id)"
-            :thumb="imgUrl+orderItem.goods.pic"
+            @click.stop="toGoods(orderItem.id)"
+            :thumb="imgUrl+orderItem.pic"
           >
             <!--<div slot="desc">-->
             <!--<div class="desc">-->
