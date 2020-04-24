@@ -111,7 +111,7 @@ export default {
                 }
                 imgList.push({
                     url: url,
-                    path: baseApi + '/file/getImgStream?idFile=' + bannerList[i].idFile
+                    path: baseApi + '/rest/file/getImgStream?idFile=' + bannerList[i].idFile
                 })
             }
             this.banners = imgList
@@ -123,7 +123,7 @@ export default {
                 this.total = response.data.total
                 for (var index in list) {
                     const item = list[index]
-                    item.img = baseApi + '/file/getImgStream?idFile=' + item.pic
+                    item.img = baseApi + '/rest/file/getImgStream?idFile=' + item.pic
                 }
                 this.goodsList = list
 

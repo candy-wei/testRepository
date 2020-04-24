@@ -43,6 +43,9 @@ export default {
         this.canCashSum = sum.toFixed(2)
       })
     },
+    formatPrice(price) {
+      return (price / 100).toFixed(2)
+    },
     getCashSum() {
       redPackApi.getCashSum().then(sum => {
         this.cashSum = sum.toFixed(2)

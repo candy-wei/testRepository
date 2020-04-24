@@ -27,7 +27,7 @@ export default {
         return {
             activeFooter: 3,
             title:'',
-            imgUrl:baseApi+'/file/getImgStream?idFile=',
+            imgUrl:baseApi+'/rest/file/getImgStream?idFile=',
             order:{orderSn:'',address:{name:''}}
         };
     },

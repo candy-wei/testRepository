@@ -32,5 +32,9 @@ export default {
             queryObject[temp[0]] = temp[1]
         }
         return queryObject
+    },
+
+    formatPrice: function(price) {
+        return '¥' + (price / 100).toFixed(2)
     }
 }

@@ -8,7 +8,7 @@ const port = process.env.PORT || 8081 // dev port
 const name = 'pos'
 module.exports = {
   outputDir: 'dist',
-  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   lintOnSave: false,
   productionSourceMap: false,
   devServer: {

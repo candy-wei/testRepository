@@ -63,7 +63,7 @@ export default {
             goods: {
                 name: '',
                 price: 0,
-                express: '免运费',
+                fare: 0,
                 remain: 0,
                 thumb: []
             }
@@ -91,10 +91,10 @@ export default {
                 !sku.stock_num && (sku.stock_num = 999)
                 this.sku = sku
                 goods.thumb = new Array()
-                goods.picture = baseApi + '/file/getImgStream?idFile=' + goods.pic
+                goods.picture = baseApi + '/rest/file/getImgStream?idFile=' + goods.pic
                 const gallery = goods.gallery.split(',')
                 for (var index in gallery) {
-                    goods.thumb.push(baseApi + '/file/getImgStream?idFile=' + gallery[index])
+                    goods.thumb.push(baseApi + '/rest/file/getImgStream?idFile=' + gallery[index])
                 }
                 this.goods = goods
 
@@ -122,8 +122,8 @@ export default {
         toHome() {
             this.$router.push('/index')
         },
-        formatPrice() {
-            return '¥' + (this.goods.price / 100).toFixed(2)
+        formatPrice(price) {
+            return '¥' + (price / 100).toFixed(2)
         },
 
         goToCart() {

@@ -26,7 +26,7 @@ export default {
         init() {
             this.user = store.state.app.user
             if (this.user.avatar) {
-                this.avatarUrl = baseApi + '/file/getImgStream?idFile=' + this.user.avatar
+                this.avatarUrl = baseApi + '/rest/file/getImgStream?idFile=' + this.user.avatar
             }
         },
         onClickLeft() {
@@ -41,7 +41,7 @@ export default {
             }).then(response => {
                 //更新用户信息
                 store.dispatch('app/toggleUser', response.data)
-                this.avatarUrl = baseApi + '/file/getImgStream?idFile=' + response.data.avatar
+                this.avatarUrl = baseApi + '/rest/file/getImgStream?idFile=' + response.data.avatar
             })
         }
     }

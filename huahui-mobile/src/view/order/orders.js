@@ -35,7 +35,7 @@ export default {
             activeFooter: 3,
             checkedGoods: ['1'],
             goods: [ ],
-            imgUrl:baseApi+'/file/getImgStream?idFile=',
+            imgUrl:baseApi+'/rest/file/getImgStream?idFile=',
             listQuery: {
                 page: 1,
                 pageNum: 6,
@@ -50,7 +50,7 @@ export default {
         if(this.$route.query){
             let status = this.$route.query.status
             //使用状态减一作为导航栏的序号，如果状态值改变，则不能使用该方法
-            this.activeNav = parseInt(status)-1
+            this.activeNav = parseInt(status) - 1
             this.listQuery.status = status
         }
       this.init()

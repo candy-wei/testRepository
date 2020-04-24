@@ -34,7 +34,7 @@ export default {
         init() {
             this.user = store.state.app.user
             if (this.user.avatar) {
-                this.avatarUrl = baseApi + '/file/getImgStream?idFile=' + this.user.avatar
+                this.avatarUrl = baseApi + '/rest/file/getImgStream?idFile=' + this.user.avatar
             }
         },
         onClickLeft() {

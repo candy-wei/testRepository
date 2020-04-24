@@ -49,7 +49,7 @@ export default {
         let cartList = response.data
         for (const index in cartList) {
           let cart = cartList[index]
-          cart.thumb = baseApi + '/file/getImgStream?idFile=' + cart.goods.pic
+          cart.thumb = baseApi + '/rest/file/getImgStream?idFile=' + cart.goods.pic
           this.checkedGoods.push(cartList[index].id)
         }
         this.cartList = cartList
