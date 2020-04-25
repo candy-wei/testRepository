@@ -2,6 +2,7 @@ import { NavBar, Row, Col, Panel, Cell, Tab, Tabs, Image, List } from 'vant';
 import html2canvas from 'html2canvas';
 import QRcode from '@xkeshi/vue-qrcode'
 import userApi from "@/api/user"
+import storage from '@/utils/storage'
 
 export default {
 
@@ -20,7 +21,7 @@ export default {
   data() {
     return {
       show: false,
-      qrcodeUrl: "",
+      qrcodeUrl: "https://shop.ningyuanxinxi.com/mobile/rest/wx/auth/?parentOpenId=" + storage.getOpenId(),
       posterImg: "",
       showPoster: false,
       recommendList: [],

@@ -55,7 +55,7 @@
 
       <van-tab title="我的邀请码">
         <div ref="poster" class="poster-box">
-          <qrcode class="qr_code" :value="qrcodeUrl" :options="{ size: 65 }"></qrcode>
+          <qrcode class="qr_code" :value="qrcodeUrl" :options="{ size: 85 }"></qrcode>
           <img src="@/assets/img/poster-bg.jpg" class="poster-bg" alt @load="posterLoad" />
           <img :src="posterImg" class="poster-img" alt v-if="showPoster" />
         </div>
@@ -93,10 +93,10 @@
 }
 .qr_code {
   position: absolute;
-  left: 160px;
-  top: 530px;
-  width: 65px;
-  height: 65px;
+  left: 70px;
+  top: 460px;
+  width: 85px;
+  height: 85px;
 }
 .poster-bg {
   width: 100%;
@@ -110,6 +110,6 @@
   left: 10%;
   top: 50%;
   transform: translateY(-50%);
-  box-shadow: 4px 2px 8px 2px #715f5f;
+  box-shadow: 4px 2px 8px 2px #b64b4b;
 }
 </style>
