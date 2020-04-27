@@ -93,7 +93,7 @@
 }
 .qr_code {
   position: absolute;
-  left: 70px;
+  right: 20px;
   top: 460px;
   width: 85px;
   height: 85px;

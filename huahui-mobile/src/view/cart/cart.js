@@ -1,7 +1,7 @@
 import cart from '@/api/cart'
 import { Checkbox, CheckboxGroup, Card, SubmitBar, Toast, NavBar, Tabbar, TabbarItem, Stepper, Button, Icon, Image, SwipeCell } from 'vant';
 const baseApi = process.env.VUE_APP_BASE_API
-import store from '@/store'
+
 export default {
   components: {
     [Card.name]: Card,
@@ -39,7 +39,8 @@ export default {
       return '结算' + (amount ? `(${amount})` : '');
     },
     totalPrice() {
-      return this.cartList.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? (parseFloat(item.price) * item.amount) : 0), 0)
+      // 运费固定￥9.9
+      return this.cartList.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? (parseFloat(item.price) * item.amount) : 0), 990)
     }
   },
 

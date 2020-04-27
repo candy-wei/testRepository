@@ -54,6 +54,10 @@ export default {
         onClickLeft() {
             storage.set('chosenAddressId', this.chosenAddressId)
             this.$router.go(-1)
+        },
+        toIndex() {
+          // 路由到首页
+          this.$router.push({path: '/index'});
         }
     }
 }

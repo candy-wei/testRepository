@@ -2,7 +2,7 @@ import userApi from '@/api/user'
 import redpackApi from '@/api/redpack'
 import store from '@/store'
 
-import { Cell, CellGroup, Col, Icon, Row, Tabbar, TabbarItem, Toast, Image, Grid, GridItem, Dialog, Popup } from 'vant';
+import { Cell, CellGroup, Col, Icon, Row, Tabbar, TabbarItem, Toast, Image, Grid, GridItem, Dialog, Popup, Overlay } from 'vant';
 
 export default {
     components: {
@@ -19,6 +19,7 @@ export default {
         [GridItem.name]: GridItem,
         [Dialog.Component.name]: Dialog,
         [Popup.name]: Popup,
+        [Overlay.name]: Overlay,
     },
     data() {
         return {
@@ -32,10 +33,12 @@ export default {
                 redpacketAmount: 0,
                 redpacketReceive: 0, // 可领红包数
                 receiverCount: 0, // 已领取红包数
-                vip: ''
+                vip: '',
+                vipName: ''
             },
             redpack: 0.00, // 领取的红包金额
-            showRule: false // 显示规则弹窗
+            showRule: false, // 显示规则弹窗
+            showQR: false
         }
     },
     mounted() {
@@ -113,6 +116,9 @@ export default {
         },
         open() {
             console.log('open')
+        },
+        showQr() {
+            this.showQR = true
         }
     }
 }

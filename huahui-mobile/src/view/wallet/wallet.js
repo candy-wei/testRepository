@@ -59,5 +59,9 @@ export default {
         this.cashList = list
       })
     },
+    toIndex() {
+      // 路由到首页
+      this.$router.push({path: '/index'});
+    }
   }
 }

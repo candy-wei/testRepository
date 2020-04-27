@@ -19,7 +19,11 @@
       :disabled="!checkedGoods.length"
       :button-text="submitBarText"
       @submit="submit"
-    ></van-submit-bar>
+    >
+    <template #tip>
+      说明：运费￥9.9
+    </template>
+    </van-submit-bar>
 
     <van-tabbar v-model="activeFooter">
       <van-tabbar-item icon="home-o" replace to="/index">首页</van-tabbar-item>

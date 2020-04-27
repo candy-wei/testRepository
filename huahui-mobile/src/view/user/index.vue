@@ -8,8 +8,8 @@
         </van-col>
         <van-col span="16" class="header-row-right">
           <van-row>
-            <van-image :src="require('@/assets/img/level'+ 3 +'.png')" width="26px" height="26px"></van-image>
-            <span style="margin-left:10px;margin-bottom: 10px;">{{userInfo.vip}}</span>
+            <van-image :src="require('@/assets/img/level'+ userInfo.vip +'.png')" width="26px" height="26px"></van-image>
+            <span style="margin-left:10px;margin-bottom: 10px;">{{userInfo.vipName}}</span>
           </van-row>
           <div class="integral">累计积分: {{userInfo.points}} 分</div>
         </van-col>
@@ -38,7 +38,7 @@
     </van-cell-group>
 
     <van-grid :column-num="2" class="redpack-group">
-      <van-grid-item info="99+" to="/index">
+      <van-grid-item info="99+" to="/wallet">
         <img src="@/assets/img/redpack4.png" class="redpack-img" />
         <span class="redpack-label">红包总数{{userInfo.redpacketAmount}}个</span>
       </van-grid-item>
@@ -63,7 +63,7 @@
       <van-cell icon="records" title="全部订单" is-link to="order" />
       <van-cell icon="location-o" title="收货地址" is-link to="address" />
       <van-cell icon="friends-o" title="我的团队" is-link to="partner" />
-      <!-- <van-cell icon="setting-o" title="设置" is-link to="setting" /> -->
+      <van-cell icon="qr" title="关注我们" is-link @click="showQr" />
     </van-cell-group>
 
     <!-- 领取红包图片 -->
@@ -99,6 +99,20 @@
       <img src="@/assets/img/rule.png" width="90%" style="margin-left:5%" />
       <img src="@/assets/img/close.png" class="close_btn" @click="onCloseRule" />
     </van-popup>
+
+    <van-overlay :show="showQR" @click="showQR = false" z-index="2002">
+      <div class="wrapper">
+        <div>
+          <div class="qr_content">
+            <span>扫描二维码关注公众号</span>
+            <img width="100%" height="100%" src="@/assets/img/qrcode_for_gh_6e0fed043799_258.jpg"/>
+          </div>
+          <div style="margin-top: 10px;">
+            <img src="@/assets/img/close.png" width="32px" height="32px"/>
+          </div>
+        </div>
+      </div>
+    </van-overlay>
 
     <van-tabbar v-model="activeFooter">
       <van-tabbar-item icon="home-o" replace to="/index">首页</van-tabbar-item>
@@ -323,4 +337,23 @@
   height: 60px;
   animation: scale 0.5s infinite alternate forwards;
 }
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+  }
+
+  .block {
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
+  }
+  .qr_content{
+    padding: 20px 5%;
+    background: white;
+    margin-left: 17%;
+    margin-right: 17%;
+  }
 </style>

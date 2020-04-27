@@ -42,7 +42,7 @@ export default {
       return '提交订单' + (count ? `(${count})` : '')
     },
     totalPrice() {
-      return this.cartList.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? (parseFloat(item.goods.price) * item.amount) : 0), 0)
+      return this.cartList.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? (parseFloat(item.goods.price) * item.amount) : 0), 990)
     }
   },
 

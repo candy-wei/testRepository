@@ -35,5 +35,9 @@ export default {
     onClickLeft() {
       this.$router.go(-1)
     },
+    toIndex() {
+      // 路由到首页
+      this.$router.push({path: '/index'});
+    }
   },
 }
