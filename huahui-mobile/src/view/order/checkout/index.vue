@@ -21,7 +21,7 @@
       @submit="submit"
     >
     <template #tip>
-      说明：运费￥9.9
+      说明：含运费￥9.9
     </template>
     </van-submit-bar>
 

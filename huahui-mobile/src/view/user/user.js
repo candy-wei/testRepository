@@ -32,7 +32,7 @@ export default {
                 points: 0,
                 redpacketAmount: 0,
                 redpacketReceive: 0, // 可领红包数
-                receiverCount: 0, // 已领取红包数
+                redpacketDaily: 0, // 每日可领红包数
                 vip: '',
                 vipName: ''
             },

@@ -167,6 +167,10 @@ export default {
                 Toast('添加购物车失败')
             })
 
-        }
+        },
+        toIndex() {
+            // 路由到首页
+            this.$router.push({path: '/index'});
+          }
     }
 };

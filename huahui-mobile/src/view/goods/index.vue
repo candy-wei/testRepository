@@ -35,6 +35,15 @@
       @buy-clicked="onBuyClicked"
       @add-cart="onAddCartClicked"
     />
+
+    <div class="nav" style="display: block;">
+      <a class="nav_left" href="javascript:void(0);" @click="toIndex">
+        <img width="100%" src="@/assets/img/home_icon@2x.png" alt />
+      </a>
+      <a href="javascript:void(0);" onclick="javascript:history.go(-1);">
+        <img width="100%" src="@/assets/img/back_icon@2x.png" alt />
+      </a>
+    </div>
   </div>
 
   <div class="offline" v-else>
@@ -44,6 +53,8 @@
     </p>
     <van-button type="primary" block round @click="toHome">去看看其他商品</van-button>
   </div>
+
+
 </template>
 
 <script src="./goods.js"></script>
@@ -114,5 +125,26 @@ img {
 }
 .offline {
   margin-top: 60%;
+}
+
+.nav {
+  position: fixed;
+  bottom: 7rem;
+  right: 1.24rem;
+  z-index: 99;
+}
+.nav>a {
+  display: -webkit-box;
+  width: 2.96rem;
+  height: 2.96rem;
+}
+.nav_left {
+  margin-bottom: 0.1rem;
+}
+a {
+  background: transparent;
+  text-decoration: none;
+  color: #000;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 </style>

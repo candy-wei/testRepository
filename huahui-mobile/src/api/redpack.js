@@ -36,6 +36,12 @@ export default {
       method: 'post'
     })
   },
-
+  // 红包记录
+  getRecordList: function() {
+    return request({
+      url: '/shop/redPack/getRecordList',
+      method: 'post'
+    })
+  }
 }
 

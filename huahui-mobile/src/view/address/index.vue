@@ -43,7 +43,8 @@
       font-size: 24px;
     }
   }
-  
+}
+
 .nav {
   position: fixed;
   bottom: 7rem;
@@ -63,6 +64,5 @@ a {
   text-decoration: none;
   color: #000;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
 }
 </style>

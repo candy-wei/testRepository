@@ -71,6 +71,10 @@ export default {
 
       })
     },
+    toIndex() {
+      // 路由到首页
+      this.$router.push({path: '/index'});
+    },
   }
 
 

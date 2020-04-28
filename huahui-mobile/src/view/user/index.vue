@@ -50,7 +50,7 @@
 
       <van-grid-item @click="onTapTodayRedPack">
         <img src="@/assets/img/redpack5.png" class="redpack-img tada" />
-        <span class="redpack-label">每日可领红包{{userInfo.redpacketReceive}}/{{userInfo.receiverCount}}个</span>
+        <span class="redpack-label">每日可领红包{{userInfo.redpacketDaily}}/{{userInfo.redpacketReceive}}个</span>
       </van-grid-item>
 
       <van-grid-item to="/taskList">
@@ -63,7 +63,7 @@
       <van-cell icon="records" title="全部订单" is-link to="order" />
       <van-cell icon="location-o" title="收货地址" is-link to="address" />
       <van-cell icon="friends-o" title="我的团队" is-link to="partner" />
-      <van-cell icon="qr" title="关注我们" is-link @click="showQr" />
+      <van-cell icon="qr" title="点击关注公众号" is-link @click="showQr" />
     </van-cell-group>
 
     <!-- 领取红包图片 -->
@@ -108,7 +108,7 @@
             <img width="100%" height="100%" src="@/assets/img/qrcode_for_gh_6e0fed043799_258.jpg"/>
           </div>
           <div style="margin-top: 10px;">
-            <img src="@/assets/img/close.png" width="32px" height="32px"/>
+            <img src="@/assets/img/close.png" style="width: 32px; height: 32px" />
           </div>
         </div>
       </div>

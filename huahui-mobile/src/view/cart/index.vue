@@ -53,7 +53,7 @@
       v-if="isLogin && cartList.length>0"
     >
       <template #tip>
-        说明：运费￥9.9
+        说明：含运费￥9.9
       </template>
       <van-checkbox v-model="checkedAll" @click="checkAll" style="padding: 0 10px;">全选</van-checkbox>
     </van-submit-bar>
