@@ -96,7 +96,7 @@
       :style="{ width: '100%', 'background-color': 'transparent' }"
       class="rule-box"
     >
-      <img src="@/assets/img/rule.png" width="90%" style="margin-left:5%" />
+      <img src="@/assets/img/rule.png" style="width: 90%;margin-left:5%" />
       <img src="@/assets/img/close.png" class="close_btn" @click="onCloseRule" />
     </van-popup>
 

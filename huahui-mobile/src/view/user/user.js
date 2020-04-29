@@ -98,6 +98,7 @@ export default {
                 }
                 this.redpack = res
                 this.userInfo.redpacketReceive--
+                this.userInfo.redpacketAmount--
 
                 this.showReceiveRedPackImg = false
                 this.showRedPackMoney = true
