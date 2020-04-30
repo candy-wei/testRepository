@@ -16,9 +16,9 @@ export default {
     })
   },
   // 提现记录
-  getCashList: function () {
+  getList: function () {
     return request({
-      url: '/shop/redPack/getCashList',
+      url: '/shop/redPack/getList',
       method: 'post'
     })
   },

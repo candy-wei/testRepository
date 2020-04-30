@@ -13,17 +13,36 @@
     </div>
     <van-tabs>
       <van-tab  title="领取记录">
-        <van-cell :title="'提现记录'"></van-cell>
-
         <van-list>
-          <template v-if="cashList.length > 0">
-            <van-cell v-for="history in cashList" :key="history.createTime">
+          <template v-if="recordList.length > 0">
+            <van-cell v-for="record in recordList" :key="record.createTime">
               <van-row type="flex" align="center">
                 <van-col span="19">
-                  <div>{{history.optionType}}</div>
-                  <div>{{history.createTime}}</div>
+                  <div>{{record.optionType}}</div>
+                  <div>{{record.createTime}}</div>
                 </van-col>
-                <van-col span="5">{{history.finance}}元</van-col>
+                <van-col span="5">+{{record.finance}}元</van-col>
+              </van-row>
+            </van-cell>
+          </template>
+          <template v-else>
+            <van-row type="flex" justify="center" style="margin-top: 20px">
+              <van-col>暂无数据</van-col>
+            </van-row>
+          </template>
+        </van-list>
+      </van-tab>
+
+      <van-tab  title="提现记录">
+        <van-list>
+          <template v-if="cashList.length > 0">
+            <van-cell v-for="cash in cashList" :key="cash.createTime">
+              <van-row type="flex" align="center">
+                <van-col span="19">
+                  <div>{{cash.optionType}}</div>
+                  <div>{{cash.createTime}}</div>
+                </van-col>
+                <van-col span="5">-{{cash.finance}}元</van-col>
               </van-row>
             </van-cell>
           </template>
@@ -37,14 +56,15 @@
 
       <van-tab title="红包记录">
         <van-list>
-          <template v-if="recordList.length > 0">
-            <van-cell v-for="recorder in recordList" :key="recorder.createTime">
+          <template v-if="receiveList.length > 0">
+            <van-cell v-for="receive in receiveList" :key="receive.createTime">
               <van-row type="flex" align="center">
                 <van-col span="19">
-                  <div>{{recorder.desc}}</div>
-                  <div>{{recorder.createTime}}</div>
+                  <div>{{receive.optionType}}</div>
+                  <div>{{receive.createTime}}</div>
                 </van-col>
-                <van-col span="5">+{{recorder.num}}个</van-col>
+                <van-col span="5" v-if="receive.optType === 3">-{{receive.finance}}个</van-col>
+                <van-col span="5" v-if="receive.optType === 6">+{{receive.finance}}个</van-col>
               </van-row>
             </van-cell>
           </template>

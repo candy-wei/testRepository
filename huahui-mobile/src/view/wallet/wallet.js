@@ -18,7 +18,8 @@ export default {
       canCashSum: '---',
       cashSum: '---',
       cashList: [],
-      recordList: []
+      recordList: [],
+      receiveList: []
     }
   },
 
@@ -28,7 +29,7 @@ export default {
   methods: {
     onTapwithdraw() {
       redPackApi.cash().then(res => {
-        if (res.errorCode && res.errorCode !== 'SUCCESS') {
+        if (res.errorCode && res.errorCode === 'SUCCESS') {
           Toast.success('提现成功');
           this.init()
         } else{
@@ -41,8 +42,7 @@ export default {
     init() {
       this.getCanCashSum()
       this.getCashSum()
-      this.getCashList()
-      this.getRecordList()
+      this.getList()
     },
     getCanCashSum() {
       redPackApi.getCanCashSum().then(sum => {
@@ -57,20 +57,11 @@ export default {
         this.cashSum = sum.toFixed(2)
       })
     },
-    getCashList() {
-      redPackApi.getCashList().then(list => {
-        list.forEach(item => {
-          item.createTime = utils.formatDate(item.createTime)
-        })
-        this.cashList = list
-      })
-    },
-    getRecordList() {
-      redPackApi.getRecordList().then(list => {
-        list.forEach(item => {
-          item.createTime = utils.formatDate(item.createTime)
-        })
-        this.recordList = list
+    getList() {
+      redPackApi.getList().then(data => {
+        this.cashList = data.cashList
+        this.recordList = data.recordList
+        this.receiveList = data.receiveList
       })
     },
     toIndex() {
